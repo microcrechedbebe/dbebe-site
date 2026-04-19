@@ -1,233 +1,219 @@
 "use client";
 
-import { motion } from "framer-motion";
-import {
-  Users,
-  LogOut,
-  Backpack,
-  MessageSquare,
-  CalendarX,
-  Coins,
-  Heart,
-  Smartphone,
-  FileCheck,
-  Baby,
-} from "lucide-react";
-import { RULES, FINANCIAL_INFO } from "@/app/lib/constants";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { Heart, MessageCircle, Calendar, Send } from "lucide-react";
+
+function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default function Familles() {
+  const [step, setStep] = useState(1);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
   return (
-    <div className="space-y-16 py-8">
-      {/* Introduction */}
-      <motion.section
-        className="text-center max-w-3xl mx-auto"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-6 gradient-text">
-          Espace Familles
-        </h2>
-        <p className="text-lg text-ocean-700 leading-relaxed">
-          Parents et crèche sont partenaires. Nous croyons en une collaboration
-          étroite pour offrir à votre enfant le meilleur accompagnement possible.
-        </p>
-      </motion.section>
-
-      {/* Partnership Section */}
-      <motion.section
-        className="bg-gradient-to-br from-coral-50 to-coral-100 rounded-3xl p-8 md:p-12"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
-        <h3 className="text-2xl font-bold font-poppins text-center mb-8 flex items-center justify-center gap-3">
-          <Heart className="w-8 h-8 text-coral-500" />
-          Familles & Crèche : Partenaires
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-xl p-6 shadow-sm">
-            <h4 className="font-bold text-ocean-800 mb-3 flex items-center gap-2">
-              <Users className="w-5 h-5 text-coral-500" />
-              Accueil du matin
-            </h4>
-            <p className="text-ocean-700 text-sm leading-relaxed">
-              Nous prenons le temps des consignes, du salut à la hauteur de
-              l&apos;enfant et de l&apos;accompagnement vers le jeu, pour que vous puissiez
-              partir en étant rassurés.
+    <section id="familles" className="py-20 sm:py-28 px-4 bg-gradient-to-b from-ocean-50/30 to-white/50">
+      <div className="max-w-4xl mx-auto">
+        <AnimatedSection>
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 bg-coral-100 text-coral-700 rounded-full text-sm font-semibold mb-4">
+              Familles
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-poppins font-bold text-ocean-900 mb-6">
+              Rejoignez{" "}
+              <span className="gradient-text">notre crèche</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Chaque famille est unique. Nous construisons avec vous une relation de confiance
+              pour le bien-être de votre enfant.
             </p>
           </div>
-          <div className="bg-white rounded-xl p-6 shadow-sm">
-            <h4 className="font-bold text-ocean-800 mb-3 flex items-center gap-2">
-              <MessageSquare className="w-5 h-5 text-coral-500" />
-              Transmission du soir
-            </h4>
-            <p className="text-ocean-700 text-sm leading-relaxed">
-              Nous vous restituons le fil de la journée (fatigue, émotions, jeux,
-              repas) pour prolonger le dialogue éducatif à la maison.
-            </p>
-          </div>
-        </div>
-      </motion.section>
+        </AnimatedSection>
 
-      {/* Règles de vie */}
-      <section>
-        <h3 className="text-2xl font-bold font-poppins text-center mb-8">
-          Règles de vie
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {RULES.map((rule, index) => {
-            const iconMap: Record<string, React.ElementType> = {
-              "log-out": LogOut,
-              backpack: Backpack,
-              "message-square": MessageSquare,
-              "calendar-x": CalendarX,
-            };
-            const Icon = iconMap[rule.icon] || FileCheck;
-
-            return (
+        {/* Values */}
+        <AnimatedSection>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+            {[
+              { icon: Heart, title: "Bienveillance", desc: "Un accueil chaleureux et personnalisé pour chaque famille." },
+              { icon: MessageCircle, title: "Communication", desc: "Un dialogue constant via l'application Meeko." },
+              { icon: Calendar, title: "Flexibilité", desc: "Des formules adaptées à vos besoins." },
+            ].map((item, i) => (
               <motion.div
-                key={rule.title}
-                className="bg-white rounded-2xl p-6 shadow-lg card-hover"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index, duration: 0.5 }}
+                key={i}
+                whileHover={{ y: -4 }}
+                className="p-6 rounded-2xl bg-white shadow-md border border-gray-100 text-center"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-3 bg-ocean-100 rounded-xl">
-                    <Icon className="w-6 h-6 text-ocean-600" />
-                  </div>
-                  <h4 className="font-bold text-ocean-800">{rule.title}</h4>
+                <div className="w-14 h-14 rounded-xl bg-coral-100 flex items-center justify-center mx-auto mb-4">
+                  <item.icon size={28} className="text-coral-500" />
                 </div>
-                <p className="text-ocean-700 text-sm leading-relaxed">
-                  {rule.description}
+                <h3 className="font-poppins font-bold text-ocean-900 mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </AnimatedSection>
+
+        {/* Contact Form */}
+        <AnimatedSection>
+          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 sm:p-10">
+            <h3 className="text-2xl font-poppins font-bold text-ocean-900 mb-2 text-center">
+              Demande d&apos;inscription
+            </h3>
+            <p className="text-gray-500 text-center mb-8">
+              Remplissez ce formulaire et nous vous recontacterons rapidement.
+            </p>
+
+            {submitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-12"
+              >
+                <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+                  <span className="text-4xl">✅</span>
+                </div>
+                <h4 className="text-2xl font-poppins font-bold text-ocean-900 mb-2">
+                  Merci pour votre demande !
+                </h4>
+                <p className="text-gray-600">
+                  Nous vous recontacterons dans les plus brefs délais.
                 </p>
               </motion.div>
-            );
-          })}
-        </div>
-      </section>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                {/* Progress bar */}
+                <div className="flex items-center gap-2 mb-8">
+                  {[1, 2, 3].map((s) => (
+                    <div key={s} className="flex-1 h-2 rounded-full bg-gray-100 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: step >= s ? "100%" : "0%" }}
+                        transition={{ duration: 0.3 }}
+                        className="h-full bg-gradient-to-r from-ocean-500 to-coral-500 rounded-full"
+                      />
+                    </div>
+                  ))}
+                </div>
 
-      {/* Transparence financière */}
-      <motion.section
-        className="bg-white rounded-3xl p-8 md:p-12 shadow-lg"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-      >
-        <h3 className="text-2xl font-bold font-poppins text-center mb-8 flex items-center justify-center gap-3">
-          <Coins className="w-8 h-8 text-sun-500" />
-          Transparence Financière
-        </h3>
+                {step === 1 && (
+                  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-ocean-800 mb-1">Nom du parent</label>
+                        <input type="text" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-200 outline-none transition" placeholder="Votre nom" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-ocean-800 mb-1">Prénom</label>
+                        <input type="text" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-200 outline-none transition" placeholder="Votre prénom" />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-ocean-800 mb-1">Email</label>
+                      <input type="email" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-200 outline-none transition" placeholder="votre@email.com" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-ocean-800 mb-1">Téléphone</label>
+                      <input type="tel" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-200 outline-none transition" placeholder="06 XX XX XX XX" />
+                    </div>
+                  </motion.div>
+                )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          {/* CMG */}
-          <div className="bg-ocean-50 rounded-xl p-6">
-            <h4 className="font-bold text-ocean-800 mb-3 flex items-center gap-2">
-              <Coins className="w-5 h-5 text-sun-500" />
-              {FINANCIAL_INFO.cmg.title}
-            </h4>
-            <p className="text-ocean-700 text-sm leading-relaxed">
-              {FINANCIAL_INFO.cmg.description}
-            </p>
-          </div>
+                {step === 2 && (
+                  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-ocean-800 mb-1">Prénom de l&apos;enfant</label>
+                        <input type="text" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-200 outline-none transition" placeholder="Prénom de l'enfant" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-ocean-800 mb-1">Date de naissance</label>
+                        <input type="date" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-200 outline-none transition" />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-ocean-800 mb-1">Formule souhaitée</label>
+                      <select required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-200 outline-none transition">
+                        <option value="">Choisir une formule</option>
+                        <option value="regulier">Régulier (5 jours/semaine)</option>
+                        <option value="partiel">Partiel (2-3 jours/semaine)</option>
+                        <option value="occasionnel">Occasionnel</option>
+                        <option value="urgence">Urgence</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-ocean-800 mb-1">Date de début souhaitée</label>
+                      <input type="date" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-200 outline-none transition" />
+                    </div>
+                  </motion.div>
+                )}
 
-          {/* Credit impot */}
-          <div className="bg-sun-50 rounded-xl p-6">
-            <h4 className="font-bold text-ocean-800 mb-3 flex items-center gap-2">
-              <Coins className="w-5 h-5 text-coral-500" />
-              {FINANCIAL_INFO.taxCredit.title}
-            </h4>
-            <p className="text-ocean-700 text-sm leading-relaxed">
-              {FINANCIAL_INFO.taxCredit.description}
-            </p>
-          </div>
-        </div>
+                {step === 3 && (
+                  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-ocean-800 mb-1">Message (optionnel)</label>
+                      <textarea rows={4} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-200 outline-none transition resize-none" placeholder="Précisez vos besoins, questions..." />
+                    </div>
+                    <div className="p-4 bg-ocean-50 rounded-xl">
+                      <p className="text-sm text-ocean-700">
+                        📋 <strong>Rappel :</strong> L&apos;inscription nécessite un certificat médical, les vaccins à jour,
+                        une pièce d&apos;identité et l&apos;attestation d&apos;assurance responsabilité civile.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
 
-        <div className="bg-sand-100 border border-sand-300 rounded-xl p-6">
-          <p className="text-ocean-800 text-center font-medium">
-            📋 Les tarifs précis sont disponibles sur demande lors de la visite
-            ou sur l&apos;application Meeko.
-          </p>
-        </div>
-      </motion.section>
-
-      {/* Meeko App */}
-      <motion.section
-        className="bg-gradient-to-br from-ocean-600 via-ocean-700 to-ocean-800 text-white rounded-3xl p-8 md:p-12"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <Smartphone className="w-10 h-10 text-coral-300" />
-              <h3 className="text-2xl font-bold font-poppins">Application Meeko</h3>
-            </div>
-            <p className="text-ocean-100 mb-6 leading-relaxed">
-              La transmission administrative et les signatures s&apos;effectuent
-              électroniques via notre application partenaire Meeko. Un tableau de
-              bord 100% numérique pour simplifier votre quotidien.
-            </p>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-center gap-2">
-                <span className="text-coral-300">✓</span>
-                Documents et signatures électroniques
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-coral-300">✓</span>
-                Suivi des transmissions quotidiennes
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-coral-300">✓</span>
-                Gestion des personnes autorisées
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-coral-300">✓</span>
-                Calendrier et réservations
-              </li>
-            </ul>
+                <div className="flex justify-between mt-8">
+                  {step > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setStep(step - 1)}
+                      className="px-6 py-3 rounded-xl border border-gray-300 text-gray-600 font-medium hover:bg-gray-50 transition-colors"
+                    >
+                      Précédent
+                    </button>
+                  )}
+                  <div className="flex-1" />
+                  {step < 3 ? (
+                    <button
+                      type="button"
+                      onClick={() => setStep(step + 1)}
+                      className="px-8 py-3 bg-ocean-600 text-white rounded-xl font-semibold hover:bg-ocean-700 transition-colors shadow-lg shadow-ocean-500/25"
+                    >
+                      Suivant
+                    </button>
+                  ) : (
+                    <button
+                      type="submit"
+                      className="px-8 py-3 bg-coral-500 text-white rounded-xl font-semibold hover:bg-coral-600 transition-colors shadow-lg shadow-coral-500/25 flex items-center gap-2"
+                    >
+                      <Send size={18} />
+                      Envoyer
+                    </button>
+                  )}
+                </div>
+              </form>
+            )}
           </div>
-          <div className="flex justify-center">
-            <motion.div
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              <Baby className="w-24 h-24 mx-auto mb-4 text-coral-300" />
-              <p className="font-bold text-lg">100% numérique</p>
-              <p className="text-ocean-200 text-sm">Simple et pratique</p>
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Inclusion */}
-      <motion.section
-        className="bg-sand-50 rounded-2xl p-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-      >
-        <div className="flex items-start gap-4">
-          <div className="p-4 bg-coral-100 rounded-xl flex-shrink-0">
-            <Heart className="w-8 h-8 text-coral-600" />
-          </div>
-          <div>
-            <h4 className="font-bold text-ocean-800 text-lg mb-2">
-              Inclusion & PAI
-            </h4>
-            <p className="text-ocean-700 leading-relaxed">
-              L&apos;inclusion est au cœur du modèle de D&apos;BEBE. Lorsqu&apos;un enfant
-              présente un trouble ou une maladie chronique nécessitant des
-              aménagements, un projet d&apos;accueil individualisé (PAI) est
-              co-construit avec vous et les professionnels de santé. Chaque
-              enfant a sa place dans notre projet.
-            </p>
-          </div>
-        </div>
-      </motion.section>
-    </div>
+        </AnimatedSection>
+      </div>
+    </section>
   );
 }
