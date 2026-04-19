@@ -24,7 +24,7 @@ export const TEAM = [
     name: "DAHMANE Sofiane",
     role: "Directeur & Référent Technique",
     description: "Garant du projet éducatif, il coordonne, impulse et veille à la qualité de l'accueil. Il assure la gestion quotidienne de la structure.",
-    icon: "directions",
+    icon: "compass",
   },
   {
     name: "CRETIAUX Maryline",

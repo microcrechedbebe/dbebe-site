@@ -3,10 +3,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { TEAM } from "@/app/lib/constants";
-import { Directions, School, Users } from "lucide-react";
+import { Compass, School, Users } from "lucide-react";
 
 const iconMap: Record<string, React.ElementType> = {
-  directions: Directions, school: School, users: Users,
+  compass: Compass, school: School, users: Users,
 };
 
 const gradients = [
