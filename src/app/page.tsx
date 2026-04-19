@@ -2,26 +2,22 @@
 
 import Header from "@/components/Header";
 import Hero from "@/components/sections/Hero";
-import Accueil from "@/components/sections/Accueil";
-import Projet from "@/components/sections/Projet";
-import Equipe from "@/components/sections/Equipe";
-import Quotidien from "@/components/sections/Quotidien";
-import Infos from "@/components/sections/Infos";
-import Familles from "@/components/sections/Familles";
+import About from "@/components/sections/About";
+import Team from "@/components/sections/Team";
+import Day from "@/components/sections/Day";
+import Contact from "@/components/sections/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[#0a0e1a]">
       <Header />
       <main className="flex-1">
         <Hero />
-        <Accueil />
-        <Projet />
-        <Equipe />
-        <Quotidien />
-        <Infos />
-        <Familles />
+        <About />
+        <Team />
+        <Day />
+        <Contact />
       </main>
       <Footer />
     </div>
