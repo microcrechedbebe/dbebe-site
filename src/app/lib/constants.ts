@@ -1,10 +1,10 @@
 // Micro-crèche D'BEBE - Données centralisées
-// Source: Projet pédagogique 2026-2027 & Règlement de fonctionnement 2026-2027
+// Source : Projet pédagogique 2026-2027 & Règlement de fonctionnement 2026-2027
 
 export const CRECHE_INFO = {
   name: "Micro-crèche D'BEBE",
   tagline: "Plus qu'un mode de garde, un cocon d'éveil où chaque sens est sollicité pour révéler le plein potentiel de votre enfant.",
-  address: "1 avenue de l'Île-de-France",
+  address: "1 avenue de l'Éleu-de-France",
   city: "25000 Besançon",
   phone: "09 51 88 60 06",
   email: "microcreche.dbebe@gmail.com",
@@ -23,7 +23,7 @@ export const TEAM = [
   {
     name: "DAHMANE Sofiane",
     role: "Directeur & Référent Technique",
-    description: "Garant du projet éducatif, il coordonne, impulse et veille à la qualité de l'accueil. Il assure également la gestion quotidienne de la structure.",
+    description: "Garant du projet éducatif, il coordonne, impulse et veille à la qualité de l'accueil. Il assure la gestion quotidienne de la structure.",
     icon: "directions",
   },
   {
@@ -33,9 +33,9 @@ export const TEAM = [
     icon: "school",
   },
   {
-    name: "L'équipe CAP AEPE",
-    role: "Accompagnateurs Éducatifs Petite Enfance",
-    description: "Le socle du quotidien. Passionnés et qualifiés, ils vivent au rythme de votre enfant, gèrent les repas, le sommeil et tissent le lien affectif indispensable.",
+    name: "L'équipe CAPE AEPE",
+    role: "Accompagnatrices Éducatives Petite Enfance",
+    description: "Le socle du quotidien. Passionnées et qualifiées, elles vivent au rythme de votre enfant, gèrent les repas, le sommeil et tissent le lien affectif indispensable.",
     icon: "users",
   },
 ];
@@ -51,19 +51,19 @@ export const PEDAGOGICAL_AXES = [
     title: "Motricité libre",
     icon: "baby",
     color: "ocean",
-    description: "Inspirée par la pédagogie d'Emmi Pikler, nous ne plaçons jamais un enfant dans une position qu'il ne sait pas acquérir seul. L'environnement encourage l'autonomie motrice.",
+    description: "Inspirée par la pédagogie d'Emmi Pikler, nous ne plaçons jamais un enfant dans une position qu'il ne sait atteindre seul. L'environnement encourage l'autonomie motrice.",
   },
   {
     title: "Pédagogie active",
     icon: "sparkles",
     color: "sun",
-    description: "L'enfant n'est jamais spectateur : il est acteur de son développement. Nous proposons (« faire avec ») mais n'imposons jamais.",
+    description: "L'enfant n'est jamais spectateur : il est acteur de son développement. Nous proposons (≠ faire avec) mais jamais n'imposons.",
   },
   {
     title: "Éveil sensoriel",
     icon: "eye",
     color: "sand",
-    description: "Une approche profondément sensorielle où l'enfant explore librement pour devenir l'artisan de ses propres apprentissages.",
+    description: "Une approche professionnelle sensorielle où l'enfant explore librement pour développer l'art de ses propres apprentissages.",
   },
   {
     title: "Langage & communication",
@@ -75,7 +75,7 @@ export const PEDAGOGICAL_AXES = [
     title: "Ouverture au monde",
     icon: "globe",
     color: "coral",
-    description: "Découverte des cultures, de la nature et de l'environnement pour favoriser l'éveil et la curiosité.",
+    description: "Découvertes culturelles, de la nature et de l'environnement pour favoriser l'éveil et la curiosité.",
   },
   {
     title: "Éco-responsabilité",
@@ -87,24 +87,18 @@ export const PEDAGOGICAL_AXES = [
     title: "Santé & bien-être",
     icon: "activity",
     color: "sand",
-    description: "Hygiène, sommeil respecté, nutrition équilibrée avec Les Cuisines d'Uzel, et accueil inclusif.",
-  },
-  {
-    title: "Inclusion & PAI",
-    icon: "heart-handshake",
-    color: "ocean",
-    description: "Chaque enfant a sa place. Les projets d'accueil individualisés sont co-construits avec les familles et professionnels de santé.",
+    description: "Hygiène, nutrition, repos et développement durable au cœur de notre projet éducatif.",
   },
   {
     title: "Partenariat familles",
-    icon: "home",
+    icon: "handshake",
     color: "coral",
-    description: "Parents et crèche sont partenaires. Communication quotidienne, transmissions et dialogues bienveillants.",
+    description: "Parents et crèche sont partenaires. Communication quotidienne, transmissions et dialogue bienveillants.",
   },
 ];
 
 export const DAILY_SCHEDULE = [
-  { time: "6h00 - 7h00", activity: "Accueil échelonné", icon: "sunrise" },
+  { time: "6h00 - 7h00", activity: "Accueil individualisé", icon: "sunrise" },
   { time: "7h00 - 9h00", activity: "Jeux libres et petit-déjeuner", icon: "coffee" },
   { time: "9h00 - 11h30", activity: "Activités éducatives et motricité", icon: "palette" },
   { time: "11h30 - 12h00", activity: "Repas de midi", icon: "utensils" },
@@ -121,7 +115,7 @@ export const PRACTICAL_INFO = [
     icon: "file-text",
     items: [
       "Demande sur place ou par internet",
-      "Étude selon le temps de garde (priorité temps plein)",
+      "Étude du temps de garde (priorité temps plein)",
       "Visite obligatoire avant confirmation",
       "Dossier complet à fournir via l'application Meeko",
     ],
@@ -138,25 +132,6 @@ export const PRACTICAL_INFO = [
       "Attestation d'assurance responsabilité civile",
     ],
   },
-  {
-    title: "Frais d'entrée",
-    icon: "euro",
-    items: [
-      "Frais d'inscription : 100 €",
-      "Chèque de réservation (arrhes) : demi-mois de facturation",
-      "Restitué en cas de rétractation dans les 14 jours",
-    ],
-  },
-  {
-    title: "Période de familiarisation",
-    icon: "users",
-    items: [
-      "Durée : 1 à 2 semaines",
-      "Parents présents les premiers jours",
-      "Séparations progressives",
-      "Tarification réduite pendant cette période",
-    ],
-  },
 ];
 
 export const HEALTH_INFO = [
@@ -166,14 +141,9 @@ export const HEALTH_INFO = [
     description: "En cas de fièvre ou de maladie contagieuse, l'enfant doit rester à la maison. Nous suivons les protocoles d'hygiène stricts.",
   },
   {
-    title: "Médicaments",
-    icon: "pill",
-    description: "Un Protocol d'Accueil Individualisé (PAI) est mis en place pour tout traitement. Seul le Doliprane peut être administré sur ordonnancede longue durée.",
-  },
-  {
     title: "Allergies",
     icon: "alert-triangle",
-    description: " signalées lors de l'inscription et inscrites sur Meeko. Les repas sont préparés par Les Cuisines d'Uzel en respect des PAI.",
+    description: " signalement lors de l'inscription et inscrits sur Meeko. Les repas sont préparés par demi-journée de fabrication.",
   },
   {
     title: "Urgences",
@@ -183,11 +153,11 @@ export const HEALTH_INFO = [
 ];
 
 export const FINANCIAL_INFO = {
-  title: "Transparence financière",
+  title: "Financement",
   icon: "coins",
   cmg: {
-    title: "Complément de Libre Choix du Mode de Garde (CMG)",
-    description: "Aide de la CAF pour réduire vos frais de garde. Versé directement à la micro-crèche pour simplifier vos démarches.",
+    title: "Complément Libre Choix du Mode de Garde (CMG)",
+    description: "Aide de la CAF pour réduire vos frais de garde. Versée directement à la micro-crèche pour simplifier vos démarches.",
   },
   taxCredit: {
     title: "Crédit d'impôt",
@@ -205,7 +175,7 @@ export const RULES = [
   {
     title: "Objets personnels",
     icon: "backpack",
-    description: "Doudous, cls de change et repas personalisés sont les bienvenus. Merci de tout marquer au nom de l'enfant.",
+    description: "DouDou, couverture et doudou sont les bienvenus. Merci de tout marquer au nom de l'enfant.",
   },
   {
     title: "Communication",
@@ -215,7 +185,7 @@ export const RULES = [
   {
     title: "Absences",
     icon: "calendar-x",
-    description: "Toute absence doit être signalée avant 9h. Les jours de fermeture (congés annuels) sont communiqués en début d'année.",
+    description: "Toute absence doit être signalée avant 8h. Les jours de fermeture (congés annuels) sont communiqués en début d'année.",
   },
 ];
 
