@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-ocean-900 text-white">
+    <footer className="border-t border-white/5 bg-[#060810]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
@@ -17,41 +17,41 @@ export default function Footer() {
                   src="/logo.png"
                   alt="D'BEBE"
                   fill
-                  className="object-contain brightness-0 invert"
+                  className="object-contain"
                 />
               </div>
               <div>
-                <span className="font-poppins font-bold text-xl">D&apos;BEBE</span>
-                <span className="block text-ocean-300 text-xs">Micro-crèche</span>
+                <span className="font-space font-bold text-xl text-white">D&apos;BEBE</span>
+                <span className="block text-[10px] text-white/30 tracking-widest uppercase">Micro-crèche</span>
               </div>
             </div>
-            <p className="text-ocean-300 text-sm leading-relaxed mb-4">
-              {CRECHE_INFO.tagline}
+            <p className="text-white/30 text-sm leading-relaxed mb-4">
+              Un cocon d&apos;éveil innovant pour révéler le potentiel de chaque enfant.
             </p>
-            <div className="flex items-center gap-2 text-coral-400 text-sm">
-              <Heart size={14} className="fill-coral-400" />
+            <div className="flex items-center gap-2 text-[#f472b6] text-sm">
+              <Heart size={14} className="fill-[#f472b6]" />
               <span>Fait avec passion à {CRECHE_INFO.city}</span>
             </div>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="font-poppins font-bold text-lg mb-4">Contact</h3>
+            <h3 className="font-space font-bold text-lg text-white mb-4">Contact</h3>
             <div className="space-y-3">
-              <a href={`tel:${CRECHE_INFO.phone.replace(/\\s/g, "")}`} className="flex items-center gap-3 text-ocean-300 hover:text-white transition-colors">
-                <Phone size={18} />
+              <a href={`tel:${CRECHE_INFO.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 text-white/40 hover:text-white transition-colors">
+                <Phone size={16} />
                 <span className="text-sm">{CRECHE_INFO.phone}</span>
               </a>
-              <a href={`mailto:${CRECHE_INFO.email}`} className="flex items-center gap-3 text-ocean-300 hover:text-white transition-colors">
-                <Mail size={18} />
+              <a href={`mailto:${CRECHE_INFO.email}`} className="flex items-center gap-3 text-white/40 hover:text-white transition-colors">
+                <Mail size={16} />
                 <span className="text-sm">{CRECHE_INFO.email}</span>
               </a>
-              <div className="flex items-center gap-3 text-ocean-300">
-                <MapPin size={18} />
+              <div className="flex items-center gap-3 text-white/40">
+                <MapPin size={16} />
                 <span className="text-sm">{CRECHE_INFO.address}, {CRECHE_INFO.city}</span>
               </div>
-              <div className="flex items-center gap-3 text-ocean-300">
-                <Clock size={18} />
+              <div className="flex items-center gap-3 text-white/40">
+                <Clock size={16} />
                 <span className="text-sm">{CRECHE_INFO.hours} — {CRECHE_INFO.days}</span>
               </div>
             </div>
@@ -59,24 +59,28 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h3 className="font-poppins font-bold text-lg mb-4">Liens utiles</h3>
+            <h3 className="font-space font-bold text-lg text-white mb-4">Navigation</h3>
             <div className="space-y-2">
-              <a href="#accueil" className="block text-ocean-300 hover:text-white transition-colors text-sm">Accueil</a>
-              <a href="#projet" className="block text-ocean-300 hover:text-white transition-colors text-sm">Notre projet</a>
-              <a href="#equipe" className="block text-ocean-300 hover:text-white transition-colors text-sm">L&apos;équipe</a>
-              <a href="#quotidien" className="block text-ocean-300 hover:text-white transition-colors text-sm">Le quotidien</a>
-              <a href="#infos" className="block text-ocean-300 hover:text-white transition-colors text-sm">Infos pratiques</a>
-              <a href="#familles" className="block text-ocean-300 hover:text-white transition-colors text-sm">Inscription</a>
+              {[
+                { href: "#about", label: "Notre monde" },
+                { href: "#team", label: "L'équipe" },
+                { href: "#day", label: "Une journée" },
+                { href: "#contact", label: "Contact" },
+              ].map((link) => (
+                <a key={link.href} href={link.href} className="block text-white/40 hover:text-white transition-colors text-sm">
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-ocean-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-ocean-400 text-xs">
-            © {new Date().getFullYear()} Micro-crèche D&apos;BEBE. Tous droits réservés.
+        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-white/20 text-xs">
+            © {new Date().getFullYear()} Micro-crèche D&apos;BEBE
           </p>
-          <p className="text-ocean-500 text-xs">
-            Agrément PMI vérifié • Capacité {CRECHE_INFO.capacity} places
+          <p className="text-white/15 text-xs">
+            Agrément PMI • {CRECHE_INFO.capacity} places • {CRECHE_INFO.surface}
           </p>
         </div>
       </div>
