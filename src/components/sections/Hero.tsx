@@ -1,129 +1,132 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown, Heart, Baby, Sparkles } from "lucide-react";
+import { Sparkles, Heart, Clock } from "lucide-react";
 import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-ocean-900 via-ocean-700 to-ocean-500">
-      {/* Animated bubbles */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#4f9cf7]/20 rounded-full blur-[120px] animate-pulse-glow" />
+        <div className="absolute top-1/3 right-0 w-80 h-80 bg-[#a855f7]/20 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: "2s" }} />
+        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-[#f472b6]/15 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: "4s" }} />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[#fb923c]/10 rounded-full blur-[80px] animate-pulse-glow" style={{ animationDelay: "1s" }} />
+      </div>
+
+      {/* Floating decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-white/5"
+            className="absolute rounded-full border border-white/5"
             style={{
-              width: `${80 + i * 40}px`,
-              height: `${80 + i * 40}px`,
-              left: `${10 + i * 15}%`,
-              top: `${20 + (i % 3) * 20}%`,
+              width: `${40 + i * 30}px`,
+              height: `${40 + i * 30}px`,
+              left: `${5 + i * 12}%`,
+              top: `${15 + (i % 4) * 20}%`,
             }}
             animate={{
-              y: [0, -30, 0],
-              scale: [1, 1.05, 1],
-              opacity: [0.3, 0.6, 0.3],
+              y: [0, -20, 0],
+              opacity: [0.1, 0.3, 0.1],
+              scale: [1, 1.1, 1],
             }}
             transition={{
-              duration: 4 + i,
+              duration: 5 + i,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.5,
+              delay: i * 0.7,
             }}
           />
         ))}
       </div>
 
-      {/* Wave SVG at bottom */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-          <path
-            d="M0,80 C360,120 720,40 1080,80 C1260,100 1380,60 1440,80 L1440,120 L0,120 Z"
-            fill="#faf8f5"
-          />
-        </svg>
-      </div>
-
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         {/* Logo */}
         <motion.div
-          initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-8"
+          initial={{ scale: 0.3, opacity: 0, rotate: -10 }}
+          animate={{ scale: 1, opacity: 1, rotate: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-10"
         >
-          <div className="relative w-28 h-28 sm:w-36 sm:h-36 mx-auto">
+          <div className="relative w-32 h-32 sm:w-40 sm:h-40 mx-auto">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#4f9cf7] to-[#a855f7] rounded-full blur-2xl opacity-30 animate-pulse-glow" />
             <Image
               src="/logo.png"
-              alt="D'BEBE Logo"
+              alt="D'BEBE"
               fill
-              className="object-contain drop-shadow-2xl"
+              className="object-contain relative z-10"
               priority
             />
           </div>
         </motion.div>
 
-        {/* Tagline */}
+        {/* Title */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold text-white mb-6 leading-tight"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-4xl sm:text-5xl md:text-7xl font-space font-bold text-white mb-6 leading-tight"
         >
           Là où les petits{" "}
-          <span className="text-coral-300">grandissent</span>{" "}
+          <span className="text-gradient">grandissent</span>
+          <br />
           en confiance
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto"
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="text-lg sm:text-xl text-white/50 mb-12 max-w-2xl mx-auto font-light"
         >
-          Micro-crèche D&apos;BEBE à Besançon — Un cocon d&apos;éveil où chaque sens
-          est sollicité pour révéler le plein potentiel de votre enfant.
+          Micro-crèche D&apos;BEBE à Besançon — Un cocon d&apos;éveil innovant
+          pour révéler le potentiel de votre enfant.
         </motion.p>
 
-        {/* CTA Buttons */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
         >
           <a
-            href="#familles"
-            className="px-8 py-4 bg-coral-500 text-white rounded-xl font-semibold text-lg hover:bg-coral-600 transition-all shadow-lg shadow-coral-500/30 hover:shadow-xl hover:shadow-coral-500/40 hover:-translate-y-0.5"
+            href="#contact"
+            className="group relative px-8 py-4 bg-gradient-to-r from-[#4f9cf7] to-[#a855f7] text-white rounded-2xl font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-[#4f9cf7]/20"
           >
-            Demander une place
+            <span className="relative z-10">Demander une place</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7] to-[#f472b6] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </a>
           <a
-            href="#projet"
-            className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/30 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all"
+            href="#about"
+            className="px-8 py-4 glass text-white/80 rounded-2xl font-semibold text-lg hover:text-white hover:bg-white/10 transition-all duration-300"
           >
-            Découvrir notre projet
+            Découvrir
           </a>
         </motion.div>
 
-        {/* Key stats */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="mt-12 flex flex-wrap justify-center gap-6 sm:gap-10"
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="flex flex-wrap justify-center gap-8 sm:gap-16"
         >
           {[
-            { icon: Baby, label: "Dès 10 sem", value: "Accueil" },
-            { icon: Heart, label: "6h-19h", value: "Horaires" },
-            { icon: Sparkles, label: "12 places", value: "Capacité" },
+            { icon: Sparkles, value: "Dès 10 sem", label: "Accueil" },
+            { icon: Clock, value: "6h–19h", label: "Horaires" },
+            { icon: Heart, value: "12 places", label: "Capacité" },
           ].map((stat, i) => (
-            <div key={i} className="flex items-center gap-2 text-white/70">
-              <stat.icon size={20} className="text-coral-300" />
+            <div key={i} className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
+                <stat.icon size={18} className="text-[#4f9cf7]" />
+              </div>
               <div className="text-left">
                 <div className="text-white font-bold text-sm">{stat.value}</div>
-                <div className="text-xs">{stat.label}</div>
+                <div className="text-white/30 text-xs">{stat.label}</div>
               </div>
             </div>
           ))}
@@ -134,14 +137,19 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-24 left-1/2 -translate-x-1/2"
+        transition={{ delay: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
+          className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center pt-2"
         >
-          <ChevronDown className="text-white/50" size={32} />
+          <motion.div
+            animate={{ opacity: [1, 0], y: [0, 8] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-1.5 h-1.5 rounded-full bg-white/50"
+          />
         </motion.div>
       </motion.div>
     </section>
