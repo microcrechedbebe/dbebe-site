@@ -38,7 +38,7 @@ export default function Footer() {
                 <Phone size={13} aria-hidden="true" /><span>{CRECHE_INFO.phone}</span>
               </a>
               <a
-                href="mailto:microcreche.dbebe@gmail.com"
+                href="mailto:microcreche.dbebe@gmail.com?subject=Demande%20d%27information%20-%20Micro-cr%C3%A8che%20D%27BEBE"
                 aria-label="Envoyer un email"
                 className="flex items-center gap-2 text-ocean-300 hover:text-white transition-colors text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white rounded"
               >
