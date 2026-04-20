@@ -24,13 +24,13 @@ export const TEAM = [
     icon: "compass",
   },
   {
-    role: "Encadrement pédagogique",
+    role: "Référent technique",
     description: "Spécialiste du développement de l'enfant, elle accompagne l'équipe, garantit la cohérence du projet éducatif et assure le lien avec les familles.",
     icon: "school",
   },
   {
-    role: "Auxiliaires de puériculture",
-    description: "Le socle du quotidien. Passionnées et qualifiées (CAP AEPE), elles accompagnent chaque enfant dans ses repas, son sommeil et son éveil, avec douceur et bienveillance.",
+    role: "Auxiliaires de crèche (auxiliaires de puériculture — CAP AEPE)",
+    description: "Le socle du quotidien. Passionnées et qualifiées, elles accompagnent chaque enfant dans ses repas, son sommeil et son éveil, avec douceur et bienveillance.",
     icon: "users",
   },
 ];
