@@ -43,6 +43,10 @@ export default function Contact() {
     return () => window.removeEventListener("message", handleMessage);
   }, []);
 
+  const handleEmailClick = () => {
+    window.location.href = "mailto:microcreche.dbebe@gmail.com";
+  };
+
   return (
     <section id="contact" className="py-16 sm:py-24 px-4 relative overflow-hidden bg-gradient-to-b from-white to-cream">
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-ocean-200/15 rounded-full blur-3xl pointer-events-none" />
@@ -65,7 +69,7 @@ export default function Contact() {
         </AnimatedSection>
 
         <AnimatedSection className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
-          <a href={`tel:${CRECHE_INFO.phone.replace(/\s/g, "")}`} aria-label="Appeler la micro-crèche" className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400">
+          <a href={`tel:${CRECHE_INFO.phone.replace(/\s/g, "")}`} aria-label="Appeler la micro-crèche" className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400 cursor-pointer">
             <div className="w-9 h-9 rounded-lg bg-ocean-100 flex items-center justify-center"><Phone size={16} className="text-ocean-500" aria-hidden="true" /></div>
             <div>
               <p className="text-gray-400 text-[10px] uppercase tracking-wider font-semibold">Téléphone</p>
@@ -73,15 +77,15 @@ export default function Contact() {
             </div>
           </a>
 
-          <a href="mailto:microcreche.dbebe@gmail.com" aria-label="Envoyer un email" className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400">
+          <button onClick={handleEmailClick} aria-label="Envoyer un email" className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400 cursor-pointer w-full">
             <div className="w-9 h-9 rounded-lg bg-gold-100 flex items-center justify-center"><Mail size={16} className="text-ocean-500" aria-hidden="true" /></div>
             <div>
               <p className="text-gray-400 text-[10px] uppercase tracking-wider font-semibold">Email</p>
               <p className="text-ocean-800 font-bold text-xs sm:text-sm">Nous écrire</p>
             </div>
-          </a>
+          </button>
 
-          <a href={CRECHE_INFO.mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Obtenir l'itinéraire" className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400">
+          <a href={CRECHE_INFO.mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Obtenir l'itinéraire" className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400 cursor-pointer">
             <div className="w-9 h-9 rounded-lg bg-peach-50 flex items-center justify-center"><Navigation size={16} className="text-ocean-500" aria-hidden="true" /></div>
             <div>
               <p className="text-gray-400 text-[10px] uppercase tracking-wider font-semibold">Adresse</p>
