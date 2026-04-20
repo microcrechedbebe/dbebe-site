@@ -31,24 +31,22 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-32 px-4 relative">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#4f9cf7]/10 rounded-full blur-[150px]" />
-        <div className="absolute top-0 right-0 w-80 h-80 bg-[#a855f7]/10 rounded-full blur-[120px]" />
-      </div>
+    <section id="contact" className="py-20 sm:py-28 px-4 relative overflow-hidden bg-gradient-to-b from-white to-cream">
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-200/15 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-72 h-72 bg-coral-200/15 rounded-full blur-3xl" />
 
       <div className="max-w-5xl mx-auto relative z-10">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 glass rounded-full text-xs font-medium text-[#fb923c] tracking-wider uppercase mb-6">
-              Contact
+            <span className="inline-block px-4 py-1.5 bg-coral-50 text-coral-500 rounded-full text-sm font-bold mb-4">
+              💌 Contact
             </span>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-space font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-baloo font-bold text-sky-900 mb-6">
               Rejoignez{" "}
               <span className="text-gradient-warm">l&apos;aventure</span>
             </h2>
-            <p className="text-white/40 text-lg max-w-xl mx-auto">
-              Une place pour votre enfant ? Parlons-en.
+            <p className="text-lg text-gray-500 max-w-xl mx-auto">
+              Une place pour votre enfant ? Parlons-en ✨
             </p>
           </div>
         </AnimatedSection>
@@ -57,22 +55,22 @@ export default function Contact() {
           {/* Info cards */}
           <AnimatedSection className="lg:col-span-2 space-y-4">
             {[
-              { icon: MapPin, label: "Adresse", value: `${CRECHE_INFO.address}, ${CRECHE_INFO.city}` },
-              { icon: Phone, label: "Téléphone", value: CRECHE_INFO.phone },
-              { icon: Mail, label: "Email", value: CRECHE_INFO.email },
-              { icon: Clock, label: "Horaires", value: `${CRECHE_INFO.hours} — ${CRECHE_INFO.days}` },
+              { icon: MapPin, label: "Adresse", value: `${CRECHE_INFO.address}, ${CRECHE_INFO.city}`, color: "bg-sky-100" },
+              { icon: Phone, label: "Téléphone", value: CRECHE_INFO.phone, color: "bg-coral-50" },
+              { icon: Mail, label: "Email", value: CRECHE_INFO.email, color: "bg-lilac-50" },
+              { icon: Clock, label: "Horaires", value: `${CRECHE_INFO.hours} — ${CRECHE_INFO.days}`, color: "bg-sun-50" },
             ].map((item, i) => (
               <motion.div
                 key={i}
                 whileHover={{ x: 4 }}
-                className="flex items-start gap-4 p-4 glass rounded-xl"
+                className="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm border border-gray-100"
               >
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#4f9cf7] to-[#a855f7] flex items-center justify-center flex-shrink-0">
-                  <item.icon size={18} className="text-white" />
+                <div className={`w-10 h-10 rounded-xl ${item.color} flex items-center justify-center flex-shrink-0`}>
+                  <item.icon size={18} className="text-sky-600" />
                 </div>
                 <div>
-                  <p className="text-white/40 text-xs uppercase tracking-wider">{item.label}</p>
-                  <p className="text-white font-medium text-sm">{item.value}</p>
+                  <p className="text-gray-400 text-xs uppercase tracking-wider font-semibold">{item.label}</p>
+                  <p className="text-sky-900 font-semibold text-sm">{item.value}</p>
                 </div>
               </motion.div>
             ))}
@@ -80,21 +78,21 @@ export default function Contact() {
 
           {/* Form */}
           <AnimatedSection className="lg:col-span-3">
-            <div className="glass-strong rounded-2xl p-6 sm:p-8">
+            <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 sm:p-8">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
                 >
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#4f9cf7] to-[#a855f7] flex items-center justify-center mx-auto mb-6">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-mint-300 to-sky-400 flex items-center justify-center mx-auto mb-6">
                     <Sparkles size={36} className="text-white" />
                   </div>
-                  <h4 className="text-2xl font-space font-bold text-white mb-2">
-                    Merci !
+                  <h4 className="text-2xl font-baloo font-bold text-sky-900 mb-2">
+                    Merci ! 🎉
                   </h4>
-                  <p className="text-white/50">
-                    Nous vous recontacterons très vite ✨
+                  <p className="text-gray-500">
+                    Nous vous recontacterons très vite !
                   </p>
                 </motion.div>
               ) : (
@@ -102,12 +100,12 @@ export default function Contact() {
                   {/* Progress */}
                   <div className="flex items-center gap-2 mb-8">
                     {[1, 2, 3].map((s) => (
-                      <div key={s} className="flex-1 h-1 rounded-full bg-white/5 overflow-hidden">
+                      <div key={s} className="flex-1 h-2 rounded-full bg-gray-100 overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: step >= s ? "100%" : "0%" }}
                           transition={{ duration: 0.3 }}
-                          className="h-full bg-gradient-to-r from-[#4f9cf7] to-[#a855f7] rounded-full"
+                          className="h-full bg-gradient-to-r from-sky-400 to-coral-400 rounded-full"
                         />
                       </div>
                     ))}
@@ -117,21 +115,21 @@ export default function Contact() {
                     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">Nom</label>
-                          <input type="text" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-[#4f9cf7] focus:ring-1 focus:ring-[#4f9cf7]/50 outline-none transition" placeholder="Votre nom" />
+                          <label className="block text-xs text-gray-400 mb-1.5 uppercase tracking-wider font-semibold">Nom</label>
+                          <input type="text" required className="w-full px-4 py-3 rounded-xl bg-cream border border-gray-200 text-sky-900 placeholder-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-200 outline-none transition" placeholder="Votre nom" />
                         </div>
                         <div>
-                          <label className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">Prénom</label>
-                          <input type="text" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-[#4f9cf7] focus:ring-1 focus:ring-[#4f9cf7]/50 outline-none transition" placeholder="Votre prénom" />
+                          <label className="block text-xs text-gray-400 mb-1.5 uppercase tracking-wider font-semibold">Prénom</label>
+                          <input type="text" required className="w-full px-4 py-3 rounded-xl bg-cream border border-gray-200 text-sky-900 placeholder-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-200 outline-none transition" placeholder="Votre prénom" />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">Email</label>
-                        <input type="email" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-[#4f9cf7] focus:ring-1 focus:ring-[#4f9cf7]/50 outline-none transition" placeholder="votre@email.com" />
+                        <label className="block text-xs text-gray-400 mb-1.5 uppercase tracking-wider font-semibold">Email</label>
+                        <input type="email" required className="w-full px-4 py-3 rounded-xl bg-cream border border-gray-200 text-sky-900 placeholder-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-200 outline-none transition" placeholder="votre@email.com" />
                       </div>
                       <div>
-                        <label className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">Téléphone</label>
-                        <input type="tel" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-[#4f9cf7] focus:ring-1 focus:ring-[#4f9cf7]/50 outline-none transition" placeholder="06 XX XX XX XX" />
+                        <label className="block text-xs text-gray-400 mb-1.5 uppercase tracking-wider font-semibold">Téléphone</label>
+                        <input type="tel" required className="w-full px-4 py-3 rounded-xl bg-cream border border-gray-200 text-sky-900 placeholder-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-200 outline-none transition" placeholder="06 XX XX XX XX" />
                       </div>
                     </motion.div>
                   )}
@@ -140,21 +138,21 @@ export default function Contact() {
                     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">Prénom de l&apos;enfant</label>
-                          <input type="text" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-[#4f9cf7] focus:ring-1 focus:ring-[#4f9cf7]/50 outline-none transition" placeholder="Prénom" />
+                          <label className="block text-xs text-gray-400 mb-1.5 uppercase tracking-wider font-semibold">Prénom de l&apos;enfant</label>
+                          <input type="text" required className="w-full px-4 py-3 rounded-xl bg-cream border border-gray-200 text-sky-900 placeholder-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-200 outline-none transition" placeholder="Prénom" />
                         </div>
                         <div>
-                          <label className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">Date de naissance</label>
-                          <input type="date" required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#4f9cf7] focus:ring-1 focus:ring-[#4f9cf7]/50 outline-none transition" />
+                          <label className="block text-xs text-gray-400 mb-1.5 uppercase tracking-wider font-semibold">Date de naissance</label>
+                          <input type="date" required className="w-full px-4 py-3 rounded-xl bg-cream border border-gray-200 text-sky-900 focus:border-sky-400 focus:ring-2 focus:ring-sky-200 outline-none transition" />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">Formule</label>
-                        <select required className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#4f9cf7] focus:ring-1 focus:ring-[#4f9cf7]/50 outline-none transition">
-                          <option value="" className="bg-[#0a0e1a]">Choisir</option>
-                          <option value="regulier" className="bg-[#0a0e1a]">Régulier (5j/semaine)</option>
-                          <option value="partiel" className="bg-[#0a0e1a]">Partiel (2-3j/semaine)</option>
-                          <option value="occasionnel" className="bg-[#0a0e1a]">Occasionnel</option>
+                        <label className="block text-xs text-gray-400 mb-1.5 uppercase tracking-wider font-semibold">Formule</label>
+                        <select required className="w-full px-4 py-3 rounded-xl bg-cream border border-gray-200 text-sky-900 focus:border-sky-400 focus:ring-2 focus:ring-sky-200 outline-none transition">
+                          <option value="">Choisir</option>
+                          <option value="regulier">Régulier (5j/semaine)</option>
+                          <option value="partiel">Partiel (2-3j/semaine)</option>
+                          <option value="occasionnel">Occasionnel</option>
                         </select>
                       </div>
                     </motion.div>
@@ -163,11 +161,11 @@ export default function Contact() {
                   {step === 3 && (
                     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
                       <div>
-                        <label className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">Message (optionnel)</label>
-                        <textarea rows={4} className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:border-[#4f9cf7] focus:ring-1 focus:ring-[#4f9cf7]/50 outline-none transition resize-none" placeholder="Vos questions..." />
+                        <label className="block text-xs text-gray-400 mb-1.5 uppercase tracking-wider font-semibold">Message (optionnel)</label>
+                        <textarea rows={4} className="w-full px-4 py-3 rounded-xl bg-cream border border-gray-200 text-sky-900 placeholder-gray-300 focus:border-sky-400 focus:ring-2 focus:ring-sky-200 outline-none transition resize-none" placeholder="Vos questions..." />
                       </div>
-                      <div className="p-4 glass rounded-xl">
-                        <p className="text-sm text-white/50">
+                      <div className="p-4 bg-sky-50 rounded-xl">
+                        <p className="text-sm text-sky-700">
                           📋 Certificat médical, vaccins à jour, pièce d&apos;identité et assurance responsabilité civile nécessaires à l&apos;inscription.
                         </p>
                       </div>
@@ -176,17 +174,17 @@ export default function Contact() {
 
                   <div className="flex justify-between mt-8">
                     {step > 1 && (
-                      <button type="button" onClick={() => setStep(step - 1)} className="px-6 py-3 rounded-xl glass text-white/60 font-medium hover:text-white hover:bg-white/10 transition-all">
+                      <button type="button" onClick={() => setStep(step - 1)} className="px-6 py-3 rounded-xl border border-gray-200 text-gray-500 font-semibold hover:bg-gray-50 transition-all">
                         Retour
                       </button>
                     )}
                     <div className="flex-1" />
                     {step < 3 ? (
-                      <button type="button" onClick={() => setStep(step + 1)} className="px-8 py-3 bg-gradient-to-r from-[#4f9cf7] to-[#a855f7] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4f9cf7]/20 transition-all">
+                      <button type="button" onClick={() => setStep(step + 1)} className="px-8 py-3 bg-gradient-to-r from-sky-400 to-sky-500 text-white rounded-xl font-bold hover:shadow-lg hover:shadow-sky-400/25 transition-all">
                         Suivant
                       </button>
                     ) : (
-                      <button type="submit" className="px-8 py-3 bg-gradient-to-r from-[#fb923c] to-[#f472b6] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#fb923c]/20 transition-all flex items-center gap-2">
+                      <button type="submit" className="px-8 py-3 bg-gradient-to-r from-coral-400 to-coral-500 text-white rounded-xl font-bold hover:shadow-lg hover:shadow-coral-400/25 transition-all flex items-center gap-2">
                         <Send size={16} />
                         Envoyer
                       </button>

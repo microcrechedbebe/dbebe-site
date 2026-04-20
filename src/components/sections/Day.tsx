@@ -11,15 +11,15 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 const timeColors = [
-  "from-[#4f9cf7] to-[#22d3ee]",
-  "from-[#22d3ee] to-[#4f9cf7]",
-  "from-[#a855f7] to-[#4f9cf7]",
-  "from-[#fb923c] to-[#f472b6]",
-  "from-[#f472b6] to-[#a855f7]",
-  "from-[#a855f7] to-[#4f9cf7]",
-  "from-[#22d3ee] to-[#a855f7]",
-  "from-[#4f9cf7] to-[#fb923c]",
-  "from-[#fb923c] to-[#f472b6]",
+  "from-sky-400 to-sky-300",
+  "from-sun-300 to-sun-400",
+  "from-mint-300 to-mint-400",
+  "from-coral-300 to-coral-400",
+  "from-lilac-300 to-lilac-400",
+  "from-sky-300 to-lilac-300",
+  "from-sun-300 to-coral-300",
+  "from-mint-300 to-sky-300",
+  "from-coral-300 to-sun-300",
 ];
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -28,7 +28,7 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, x: -30 }}
+      initial={{ opacity: 0, x: -20 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={className}
@@ -40,28 +40,29 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export default function Day() {
   return (
-    <section id="day" className="py-24 sm:py-32 px-4 relative">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-80 h-80 bg-[#22d3ee]/8 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-[#fb923c]/8 rounded-full blur-[100px]" />
-      </div>
+    <section id="day" className="py-20 sm:py-28 px-4 relative overflow-hidden">
+      <div className="absolute top-0 left-1/4 w-72 h-72 bg-sun-200/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-mint-200/20 rounded-full blur-3xl" />
 
       <div className="max-w-3xl mx-auto relative z-10">
         <AnimatedSection>
-          <div className="text-center mb-20">
-            <span className="inline-block px-4 py-1.5 glass rounded-full text-xs font-medium text-[#22d3ee] tracking-wider uppercase mb-6">
-              Une journée type
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 bg-sun-50 text-sun-700 rounded-full text-sm font-bold mb-4">
+              ☀️ Une journée type
             </span>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-space font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-baloo font-bold text-sky-900 mb-6">
               Le quotidien{" "}
-              <span className="text-gradient">chez D&apos;BEBE</span>
+              <span className="text-gradient-sky">chez D&apos;BEBE</span>
             </h2>
+            <p className="text-lg text-gray-500 max-w-xl mx-auto">
+              Chaque journée est pensée pour offrir un cadre sécurisant et stimulant.
+            </p>
           </div>
         </AnimatedSection>
 
         <div className="relative">
-          {/* Glowing line */}
-          <div className="absolute left-6 sm:left-10 top-0 bottom-0 w-px bg-gradient-to-b from-[#4f9cf7] via-[#a855f7] to-[#fb923c] opacity-30" />
+          {/* Colorful line */}
+          <div className="absolute left-6 sm:left-10 top-0 bottom-0 w-1 rounded-full bg-gradient-to-b from-sky-300 via-coral-300 to-sun-300" />
 
           <div className="space-y-4">
             {DAILY_SCHEDULE.map((item, i) => {
@@ -73,15 +74,15 @@ export default function Day() {
                     whileHover={{ x: 4 }}
                     className="relative flex items-start gap-4 sm:gap-6 pl-2"
                   >
-                    <div className={`relative z-10 flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-lg`}>
+                    <div className={`relative z-10 flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-md`}>
                       <Icon size={20} className="text-white" />
                     </div>
 
-                    <div className="flex-1 glass rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
-                      <span className="text-xs font-bold text-[#4f9cf7] bg-[#4f9cf7]/10 px-2 py-0.5 rounded-full">
+                    <div className="flex-1 bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                      <span className="text-xs font-bold text-sky-500 bg-sky-50 px-2 py-0.5 rounded-full">
                         {item.time}
                       </span>
-                      <p className="text-white font-medium mt-1">{item.activity}</p>
+                      <p className="text-sky-900 font-semibold mt-1">{item.activity}</p>
                     </div>
                   </motion.div>
                 </AnimatedSection>

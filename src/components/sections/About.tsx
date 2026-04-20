@@ -13,16 +13,16 @@ const iconMap: Record<string, React.ElementType> = {
   activity: Activity, handshake: Handshake,
 };
 
-const glowColors = [
-  "from-[#4f9cf7] to-[#a855f7]",
-  "from-[#a855f7] to-[#f472b6]",
-  "from-[#f472b6] to-[#fb923c]",
-  "from-[#fb923c] to-[#22d3ee]",
-  "from-[#22d3ee] to-[#4f9cf7]",
-  "from-[#4f9cf7] to-[#f472b6]",
-  "from-[#a855f7] to-[#22d3ee]",
-  "from-[#f472b6] to-[#4f9cf7]",
-  "from-[#fb923c] to-[#a855f7]",
+const colorStyles = [
+  { bg: "bg-sky-100", icon: "bg-sky-300", text: "text-sky-700", border: "border-sky-200" },
+  { bg: "bg-coral-50", icon: "bg-coral-300", text: "text-coral-600", border: "border-coral-200" },
+  { bg: "bg-sun-50", icon: "bg-sun-300", text: "text-sun-700", border: "border-sun-200" },
+  { bg: "bg-mint-50", icon: "bg-mint-300", text: "text-mint-600", border: "border-mint-200" },
+  { bg: "bg-lilac-50", icon: "bg-lilac-300", text: "text-lilac-600", border: "border-lilac-200" },
+  { bg: "bg-peach-50", icon: "bg-peach-300", text: "text-peach-600", border: "border-peach-200" },
+  { bg: "bg-sky-50", icon: "bg-sky-400", text: "text-sky-600", border: "border-sky-200" },
+  { bg: "bg-coral-50", icon: "bg-coral-400", text: "text-coral-700", border: "border-coral-100" },
+  { bg: "bg-sun-50", icon: "bg-sun-400", text: "text-sun-600", border: "border-sun-100" },
 ];
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -43,23 +43,22 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export default function About() {
   return (
-    <section id="about" className="py-24 sm:py-32 px-4 relative">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#a855f7]/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#4f9cf7]/10 rounded-full blur-[100px]" />
-      </div>
+    <section id="about" className="py-20 sm:py-28 px-4 relative overflow-hidden">
+      {/* Decorative blobs */}
+      <div className="absolute top-0 right-0 w-72 h-72 bg-sky-200/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-coral-200/20 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <AnimatedSection>
-          <div className="text-center mb-20">
-            <span className="inline-block px-4 py-1.5 glass rounded-full text-xs font-medium text-[#4f9cf7] tracking-wider uppercase mb-6">
-              Notre monde
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 bg-sky-100 text-sky-700 rounded-full text-sm font-bold mb-4">
+              ✨ Notre monde
             </span>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-space font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-baloo font-bold text-sky-900 mb-6">
               Un univers pensé pour{" "}
-              <span className="text-gradient">s&apos;éveiller</span>
+              <span className="text-gradient-warm">s&apos;éveiller</span>
             </h2>
-            <p className="text-white/40 text-lg max-w-xl mx-auto">
+            <p className="text-lg text-gray-500 max-w-xl mx-auto">
               9 piliers pédagogiques pour accompagner chaque enfant dans son développement.
             </p>
           </div>
@@ -68,19 +67,19 @@ export default function About() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {PEDAGOGICAL_AXES.map((axe, i) => {
             const Icon = iconMap[axe.icon] || Heart;
-            const glow = glowColors[i % glowColors.length];
+            const style = colorStyles[i % colorStyles.length];
             return (
               <AnimatedSection key={i}>
                 <motion.div
-                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="group p-6 rounded-2xl glass hover:glass-strong transition-all duration-500 cursor-default"
+                  className={`p-6 rounded-2xl ${style.bg} border ${style.border} card-playful cursor-default`}
                 >
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${glow} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`w-12 h-12 rounded-xl ${style.icon} flex items-center justify-center mb-4`}>
                     <Icon size={22} className="text-white" />
                   </div>
-                  <h3 className="font-space font-bold text-white text-lg mb-2">{axe.title}</h3>
-                  <p className="text-white/40 text-sm leading-relaxed line-clamp-3">{axe.description}</p>
+                  <h3 className={`font-baloo font-bold text-lg ${style.text} mb-2`}>{axe.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{axe.description}</p>
                 </motion.div>
               </AnimatedSection>
             );
