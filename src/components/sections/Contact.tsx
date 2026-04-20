@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { CRECHE_INFO } from "@/app/lib/constants";
-import { MapPin, Phone, Mail, Clock, Navigation } from "lucide-react";
+import { Phone, Mail, Clock, Navigation } from "lucide-react";
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef(null);
@@ -23,15 +23,14 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export default function Contact() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [iframeHeight, setIframeHeight] = useState(800);
+  const [iframeHeight, setIframeHeight] = useState(1200);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      // Meeko envoie la hauteur via postMessage
       if (event.origin.includes("meeko.site")) {
         const data = event.data;
         if (typeof data === "number" && data > 100) {
-          setIframeHeight(data + 40); // petit padding de sécurité
+          setIframeHeight(data + 40);
         } else if (data && typeof data === "object") {
           const h = data.height || data.frameHeight || data.size;
           if (h && typeof h === "number" && h > 100) {
@@ -40,7 +39,6 @@ export default function Contact() {
         }
       }
     };
-
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
   }, []);
@@ -66,46 +64,25 @@ export default function Contact() {
           </div>
         </AnimatedSection>
 
-        {/* Contact info cards */}
         <AnimatedSection className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
-          <a
-            href={`tel:${CRECHE_INFO.phone.replace(/\s/g, "")}`}
-            aria-label="Appeler la micro-crèche"
-            className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400"
-          >
-            <div className="w-9 h-9 rounded-lg bg-ocean-100 flex items-center justify-center">
-              <Phone size={16} className="text-ocean-500" aria-hidden="true" />
-            </div>
+          <a href={`tel:${CRECHE_INFO.phone.replace(/\s/g, "")}`} aria-label="Appeler la micro-crèche" className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400">
+            <div className="w-9 h-9 rounded-lg bg-ocean-100 flex items-center justify-center"><Phone size={16} className="text-ocean-500" aria-hidden="true" /></div>
             <div>
               <p className="text-gray-400 text-[10px] uppercase tracking-wider font-semibold">Téléphone</p>
               <p className="text-ocean-800 font-bold text-xs sm:text-sm">{CRECHE_INFO.phone}</p>
             </div>
           </a>
 
-          <a
-            href={`mailto:${CRECHE_INFO.email}`}
-            aria-label="Envoyer un email"
-            className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400"
-          >
-            <div className="w-9 h-9 rounded-lg bg-gold-100 flex items-center justify-center">
-              <Mail size={16} className="text-ocean-500" aria-hidden="true" />
-            </div>
+          <a href={`mailto:${CRECHE_INFO.email}`} aria-label="Envoyer un email" className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400">
+            <div className="w-9 h-9 rounded-lg bg-gold-100 flex items-center justify-center"><Mail size={16} className="text-ocean-500" aria-hidden="true" /></div>
             <div>
               <p className="text-gray-400 text-[10px] uppercase tracking-wider font-semibold">Email</p>
               <p className="text-ocean-800 font-bold text-xs sm:text-sm">Nous écrire</p>
             </div>
           </a>
 
-          <a
-            href={CRECHE_INFO.mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Obtenir l'itinéraire"
-            className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400"
-          >
-            <div className="w-9 h-9 rounded-lg bg-peach-50 flex items-center justify-center">
-              <Navigation size={16} className="text-ocean-500" aria-hidden="true" />
-            </div>
+          <a href={CRECHE_INFO.mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Obtenir l'itinéraire" className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400">
+            <div className="w-9 h-9 rounded-lg bg-peach-50 flex items-center justify-center"><Navigation size={16} className="text-ocean-500" aria-hidden="true" /></div>
             <div>
               <p className="text-gray-400 text-[10px] uppercase tracking-wider font-semibold">Adresse</p>
               <p className="text-ocean-800 font-bold text-xs sm:text-sm">Obtenir l&apos;itinéraire →</p>
@@ -113,9 +90,7 @@ export default function Contact() {
           </a>
 
           <div className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 text-center">
-            <div className="w-9 h-9 rounded-lg bg-ocean-50 flex items-center justify-center">
-              <Clock size={16} className="text-ocean-500" aria-hidden="true" />
-            </div>
+            <div className="w-9 h-9 rounded-lg bg-ocean-50 flex items-center justify-center"><Clock size={16} className="text-ocean-500" aria-hidden="true" /></div>
             <div>
               <p className="text-gray-400 text-[10px] uppercase tracking-wider font-semibold">Horaires</p>
               <p className="text-ocean-800 font-bold text-xs sm:text-sm">{CRECHE_INFO.hours}</p>
@@ -123,7 +98,6 @@ export default function Contact() {
           </div>
         </AnimatedSection>
 
-        {/* Meeko iframe — hauteur auto */}
         <AnimatedSection>
           <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
             <div className="p-4 sm:p-5 border-b border-gray-100 flex items-center gap-3">
