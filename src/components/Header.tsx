@@ -24,9 +24,9 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0a0e1a]/80 backdrop-blur-xl border-b border-white/5"
+          ? "bg-white/90 backdrop-blur-lg shadow-lg shadow-black/5"
           : "bg-transparent"
       }`}
     >
@@ -43,10 +43,14 @@ export default function Header() {
               />
             </div>
             <div>
-              <span className="font-space font-bold text-lg sm:text-xl text-white group-hover:text-gradient transition-all duration-300">
+              <span className={`font-baloo font-bold text-lg sm:text-xl transition-colors ${
+                scrolled ? "text-sky-800" : "text-white"
+              }`}>
                 D&apos;BEBE
               </span>
-              <span className="block text-[10px] sm:text-xs text-white/40 tracking-widest uppercase">
+              <span className={`block text-[10px] sm:text-xs tracking-widest uppercase transition-colors ${
+                scrolled ? "text-sky-600" : "text-white/80"
+              }`}>
                 Micro-crèche
               </span>
             </div>
@@ -57,22 +61,28 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="px-4 py-2 rounded-full text-sm font-medium text-white/60 hover:text-white hover:bg-white/5 transition-all duration-300"
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                  scrolled
+                    ? "text-sky-700 hover:bg-sky-50 hover:text-sky-900"
+                    : "text-white/90 hover:bg-white/20 hover:text-white"
+                }`}
               >
                 {link.label}
               </a>
             ))}
             <a
               href="#contact"
-              className="ml-3 px-5 py-2 bg-gradient-to-r from-[#4f9cf7] to-[#a855f7] text-white rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-[#4f9cf7]/25 transition-all duration-300"
+              className="ml-3 px-5 py-2.5 bg-coral-400 text-white rounded-full text-sm font-bold hover:bg-coral-500 transition-all duration-300 shadow-lg shadow-coral-400/30 hover:shadow-xl hover:shadow-coral-400/40 hover:-translate-y-0.5"
             >
-              Inscription
+              Inscription ✨
             </a>
           </nav>
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-lg text-white/70 hover:text-white transition-colors"
+            className={`md:hidden p-2 rounded-xl transition-colors ${
+              scrolled ? "text-sky-800" : "text-white"
+            }`}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -85,7 +95,7 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#0a0e1a]/95 backdrop-blur-xl border-t border-white/5"
+            className="md:hidden bg-white/95 backdrop-blur-lg border-t border-sky-100"
           >
             <nav className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
@@ -93,7 +103,7 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 rounded-xl text-white/70 hover:text-white hover:bg-white/5 font-medium transition-all"
+                  className="px-4 py-3 rounded-xl text-sky-700 hover:bg-sky-50 font-semibold transition-all"
                 >
                   {link.label}
                 </a>
@@ -101,9 +111,9 @@ export default function Header() {
               <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}
-                className="mt-2 px-4 py-3 bg-gradient-to-r from-[#4f9cf7] to-[#a855f7] text-white rounded-xl text-center font-semibold"
+                className="mt-2 px-4 py-3 bg-coral-400 text-white rounded-xl text-center font-bold hover:bg-coral-500 transition-all"
               >
-                Inscription
+                Inscription ✨
               </a>
             </nav>
           </motion.div>

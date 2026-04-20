@@ -6,58 +6,60 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated gradient orbs */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-sky-400 via-sky-500 to-sky-600">
+      {/* Decorative shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#4f9cf7]/20 rounded-full blur-[120px] animate-pulse-glow" />
-        <div className="absolute top-1/3 right-0 w-80 h-80 bg-[#a855f7]/20 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: "2s" }} />
-        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-[#f472b6]/15 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: "4s" }} />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[#fb923c]/10 rounded-full blur-[80px] animate-pulse-glow" style={{ animationDelay: "1s" }} />
-      </div>
-
-      {/* Floating decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
+        {/* Clouds */}
+        <div className="absolute top-16 left-[10%] w-40 h-16 bg-white/20 rounded-full animate-float" />
+        <div className="absolute top-32 right-[15%] w-56 h-20 bg-white/15 rounded-full animate-float-reverse" />
+        <div className="absolute bottom-32 left-[5%] w-32 h-12 bg-white/10 rounded-full animate-float" style={{ animationDelay: "2s" }} />
+        
+        {/* Floating circles */}
+        <div className="absolute top-1/4 right-[10%] w-20 h-20 bg-sun-300/30 rounded-full animate-bounce-gentle" />
+        <div className="absolute bottom-1/3 left-[20%] w-16 h-16 bg-coral-300/25 rounded-full animate-bounce-gentle" style={{ animationDelay: "1s" }} />
+        <div className="absolute top-1/2 right-[30%] w-12 h-12 bg-lilac-300/25 rounded-full animate-bounce-gentle" style={{ animationDelay: "2s" }} />
+        <div className="absolute bottom-1/4 right-[8%] w-24 h-24 bg-mint-300/20 rounded-full animate-float-reverse" style={{ animationDelay: "3s" }} />
+        
+        {/* Stars */}
+        {[...Array(5)].map((_, i) => (
+          <div
             key={i}
-            className="absolute rounded-full border border-white/5"
+            className="absolute text-sun-300/40 animate-pulse-soft"
             style={{
-              width: `${40 + i * 30}px`,
-              height: `${40 + i * 30}px`,
-              left: `${5 + i * 12}%`,
-              top: `${15 + (i % 4) * 20}%`,
+              left: `${15 + i * 18}%`,
+              top: `${10 + (i % 3) * 25}%`,
+              animationDelay: `${i * 0.8}s`,
+              fontSize: `${12 + i * 4}px`,
             }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.1, 0.3, 0.1],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 5 + i,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.7,
-            }}
-          />
+          >
+            ✦
+          </div>
         ))}
       </div>
 
+      {/* Wave at bottom */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+          <path d="M0,40 C240,100 480,20 720,60 C960,100 1200,30 1440,70 L1440,120 L0,120 Z" fill="#FFF8F0"/>
+        </svg>
+      </div>
+
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         {/* Logo */}
         <motion.div
-          initial={{ scale: 0.3, opacity: 0, rotate: -10 }}
-          animate={{ scale: 1, opacity: 1, rotate: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-10"
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
+          className="mb-8"
         >
-          <div className="relative w-32 h-32 sm:w-40 sm:h-40 mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#4f9cf7] to-[#a855f7] rounded-full blur-2xl opacity-30 animate-pulse-glow" />
+          <div className="relative w-28 h-28 sm:w-36 sm:h-36 mx-auto">
+            <div className="absolute inset-0 bg-white/30 rounded-full blur-xl animate-pulse-soft" />
             <Image
               src="/logo.png"
               alt="D'BEBE"
               fill
-              className="object-contain relative z-10"
+              className="object-contain relative z-10 drop-shadow-lg"
               priority
             />
           </div>
@@ -65,24 +67,24 @@ export default function Hero() {
 
         {/* Title */}
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-space font-bold text-white mb-6 leading-tight"
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-baloo font-bold text-white mb-6 leading-tight"
         >
           Là où les petits{" "}
-          <span className="text-gradient">grandissent</span>
+          <span className="text-sun-300">grandissent</span>
           <br />
-          en confiance
+          en confiance 💛
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-lg sm:text-xl text-white/50 mb-12 max-w-2xl mx-auto font-light"
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="text-lg sm:text-xl text-white/85 mb-10 max-w-2xl mx-auto font-medium"
         >
-          Micro-crèche D&apos;BEBE à Besançon — Un cocon d&apos;éveil innovant
+          Micro-crèche D&apos;BEBE à Besançon — Un cocon d&apos;éveil chaleureux
           pour révéler le potentiel de votre enfant.
         </motion.p>
 
@@ -90,19 +92,18 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+          transition={{ duration: 0.7, delay: 0.7 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-14"
         >
           <a
             href="#contact"
-            className="group relative px-8 py-4 bg-gradient-to-r from-[#4f9cf7] to-[#a855f7] text-white rounded-2xl font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-[#4f9cf7]/20"
+            className="px-8 py-4 bg-coral-400 text-white rounded-2xl font-bold text-lg hover:bg-coral-500 transition-all duration-300 shadow-xl shadow-coral-400/30 hover:shadow-2xl hover:shadow-coral-400/40 hover:-translate-y-1"
           >
-            <span className="relative z-10">Demander une place</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#a855f7] to-[#f472b6] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            Demander une place 🌟
           </a>
           <a
             href="#about"
-            className="px-8 py-4 glass text-white/80 rounded-2xl font-semibold text-lg hover:text-white hover:bg-white/10 transition-all duration-300"
+            className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white border-2 border-white/40 rounded-2xl font-bold text-lg hover:bg-white/30 transition-all duration-300"
           >
             Découvrir
           </a>
@@ -112,21 +113,19 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="flex flex-wrap justify-center gap-8 sm:gap-16"
+          transition={{ duration: 0.7, delay: 1 }}
+          className="flex flex-wrap justify-center gap-6 sm:gap-10"
         >
           {[
-            { icon: Sparkles, value: "Dès 10 sem", label: "Accueil" },
-            { icon: Clock, value: "6h–19h", label: "Horaires" },
-            { icon: Heart, value: "12 places", label: "Capacité" },
+            { icon: Sparkles, value: "Dès 10 sem", label: "Accueil", color: "bg-sun-300/20" },
+            { icon: Clock, value: "6h–19h", label: "Horaires", color: "bg-mint-300/20" },
+            { icon: Heart, value: "12 places", label: "Capacité", color: "bg-coral-300/20" },
           ].map((stat, i) => (
-            <div key={i} className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                <stat.icon size={18} className="text-[#4f9cf7]" />
-              </div>
+            <div key={i} className={`flex items-center gap-3 ${stat.color} px-4 py-2 rounded-full`}>
+              <stat.icon size={18} className="text-white" />
               <div className="text-left">
                 <div className="text-white font-bold text-sm">{stat.value}</div>
-                <div className="text-white/30 text-xs">{stat.label}</div>
+                <div className="text-white/70 text-xs">{stat.label}</div>
               </div>
             </div>
           ))}
@@ -137,18 +136,18 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-28 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center pt-2"
+          className="w-8 h-12 rounded-full border-2 border-white/30 flex items-start justify-center pt-2"
         >
           <motion.div
-            animate={{ opacity: [1, 0], y: [0, 8] }}
+            animate={{ opacity: [1, 0], y: [0, 10] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-1.5 h-1.5 rounded-full bg-white/50"
+            className="w-1.5 h-1.5 rounded-full bg-white/60"
           />
         </motion.div>
       </motion.div>
