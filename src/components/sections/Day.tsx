@@ -11,15 +11,15 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 const timeColors = [
-  "from-sky-400 to-sky-300",
-  "from-sun-300 to-sun-400",
-  "from-mint-300 to-mint-400",
-  "from-coral-300 to-coral-400",
-  "from-lilac-300 to-lilac-400",
-  "from-sky-300 to-lilac-300",
-  "from-sun-300 to-coral-300",
-  "from-mint-300 to-sky-300",
-  "from-coral-300 to-sun-300",
+  "from-ocean-400 to-ocean-300",
+  "from-gold-300 to-gold-400",
+  "from-ocean-300 to-gold-300",
+  "from-peach-300 to-gold-400",
+  "from-ocean-300 to-peach-300",
+  "from-ocean-400 to-ocean-300",
+  "from-gold-300 to-peach-300",
+  "from-ocean-300 to-ocean-400",
+  "from-gold-400 to-peach-400",
 ];
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -41,18 +41,18 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 export default function Day() {
   return (
     <section id="day" className="py-20 sm:py-28 px-4 relative overflow-hidden">
-      <div className="absolute top-0 left-1/4 w-72 h-72 bg-sun-200/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-mint-200/20 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/4 w-72 h-72 bg-ocean-200/15 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-gold-200/15 rounded-full blur-3xl" />
 
       <div className="max-w-3xl mx-auto relative z-10">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-sun-50 text-sun-700 rounded-full text-sm font-bold mb-4">
+            <span className="inline-block px-4 py-1.5 bg-gold-50 text-gold-600 rounded-full text-sm font-bold mb-4">
               ☀️ Une journée type
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-baloo font-bold text-sky-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-baloo font-bold text-ocean-800 mb-6">
               Le quotidien{" "}
-              <span className="text-gradient-sky">chez D&apos;BEBE</span>
+              <span className="text-gradient-brand">chez D&apos;BEBE</span>
             </h2>
             <p className="text-lg text-gray-500 max-w-xl mx-auto">
               Chaque journée est pensée pour offrir un cadre sécurisant et stimulant.
@@ -62,7 +62,7 @@ export default function Day() {
 
         <div className="relative">
           {/* Colorful line */}
-          <div className="absolute left-6 sm:left-10 top-0 bottom-0 w-1 rounded-full bg-gradient-to-b from-sky-300 via-coral-300 to-sun-300" />
+          <div className="absolute left-6 sm:left-10 top-0 bottom-0 w-1 rounded-full bg-gradient-to-b from-ocean-300 via-gold-300 to-peach-300" />
 
           <div className="space-y-4">
             {DAILY_SCHEDULE.map((item, i) => {
@@ -79,10 +79,10 @@ export default function Day() {
                     </div>
 
                     <div className="flex-1 bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                      <span className="text-xs font-bold text-sky-500 bg-sky-50 px-2 py-0.5 rounded-full">
+                      <span className="text-xs font-bold text-ocean-500 bg-ocean-50 px-2 py-0.5 rounded-full">
                         {item.time}
                       </span>
-                      <p className="text-sky-900 font-semibold mt-1">{item.activity}</p>
+                      <p className="text-ocean-800 font-semibold mt-1">{item.activity}</p>
                     </div>
                   </motion.div>
                 </AnimatedSection>

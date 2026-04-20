@@ -10,9 +10,9 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 const gradients = [
-  "from-sky-400 to-sky-500",
-  "from-coral-400 to-lilac-400",
-  "from-sun-300 to-mint-300",
+  "from-ocean-400 to-ocean-500",
+  "from-gold-400 to-peach-400",
+  "from-ocean-300 to-gold-300",
 ];
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -34,17 +34,17 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 export default function Team() {
   return (
     <section id="team" className="py-20 sm:py-28 px-4 relative overflow-hidden bg-gradient-to-b from-cream to-white">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-lilac-200/15 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gold-200/15 rounded-full blur-3xl" />
 
       <div className="max-w-5xl mx-auto relative z-10">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-lilac-100 text-lilac-600 rounded-full text-sm font-bold mb-4">
-              💜 L&apos;équipe
+            <span className="inline-block px-4 py-1.5 bg-gold-100 text-gold-600 rounded-full text-sm font-bold mb-4">
+              💛 L&apos;équipe
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-baloo font-bold text-sky-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-baloo font-bold text-ocean-800 mb-6">
               L&apos;humain au{" "}
-              <span className="text-gradient-warm">cœur</span>
+              <span className="text-gradient-brand">cœur</span>
             </h2>
             <p className="text-lg text-gray-500 max-w-xl mx-auto">
               Passionnées, qualifiées, dédiées au bien-être de chaque enfant.
@@ -65,8 +65,8 @@ export default function Team() {
                   <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${gradients[i]} flex items-center justify-center mx-auto mb-5 shadow-lg`}>
                     <Icon size={36} className="text-white" />
                   </div>
-                  <h3 className="font-baloo font-bold text-xl text-sky-900 mb-1">{member.name}</h3>
-                  <p className="text-coral-400 font-bold text-sm mb-3">{member.role}</p>
+                  <h3 className="font-baloo font-bold text-xl text-ocean-800 mb-1">{member.name}</h3>
+                  <p className="text-gold-500 font-bold text-sm mb-3">{member.role}</p>
                   <p className="text-gray-500 text-sm leading-relaxed">{member.description}</p>
                 </motion.div>
               </AnimatedSection>

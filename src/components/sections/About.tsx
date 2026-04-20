@@ -14,15 +14,15 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 const colorStyles = [
-  { bg: "bg-sky-100", icon: "bg-sky-300", text: "text-sky-700", border: "border-sky-200" },
-  { bg: "bg-coral-50", icon: "bg-coral-300", text: "text-coral-600", border: "border-coral-200" },
-  { bg: "bg-sun-50", icon: "bg-sun-300", text: "text-sun-700", border: "border-sun-200" },
-  { bg: "bg-mint-50", icon: "bg-mint-300", text: "text-mint-600", border: "border-mint-200" },
-  { bg: "bg-lilac-50", icon: "bg-lilac-300", text: "text-lilac-600", border: "border-lilac-200" },
+  { bg: "bg-ocean-50", icon: "bg-ocean-400", text: "text-ocean-700", border: "border-ocean-200" },
+  { bg: "bg-gold-50", icon: "bg-gold-400", text: "text-gold-700", border: "border-gold-200" },
   { bg: "bg-peach-50", icon: "bg-peach-300", text: "text-peach-600", border: "border-peach-200" },
-  { bg: "bg-sky-50", icon: "bg-sky-400", text: "text-sky-600", border: "border-sky-200" },
-  { bg: "bg-coral-50", icon: "bg-coral-400", text: "text-coral-700", border: "border-coral-100" },
-  { bg: "bg-sun-50", icon: "bg-sun-400", text: "text-sun-600", border: "border-sun-100" },
+  { bg: "bg-ocean-50", icon: "bg-ocean-300", text: "text-ocean-600", border: "border-ocean-100" },
+  { bg: "bg-gold-50", icon: "bg-gold-300", text: "text-gold-600", border: "border-gold-100" },
+  { bg: "bg-peach-50", icon: "bg-peach-400", text: "text-peach-700", border: "border-peach-100" },
+  { bg: "bg-ocean-50", icon: "bg-ocean-400", text: "text-ocean-600", border: "border-ocean-200" },
+  { bg: "bg-gold-50", icon: "bg-gold-400", text: "text-gold-700", border: "border-gold-200" },
+  { bg: "bg-peach-50", icon: "bg-peach-300", text: "text-peach-600", border: "border-peach-200" },
 ];
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -44,19 +44,18 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 export default function About() {
   return (
     <section id="about" className="py-20 sm:py-28 px-4 relative overflow-hidden">
-      {/* Decorative blobs */}
-      <div className="absolute top-0 right-0 w-72 h-72 bg-sky-200/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-coral-200/20 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-72 h-72 bg-ocean-200/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold-200/20 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-sky-100 text-sky-700 rounded-full text-sm font-bold mb-4">
+            <span className="inline-block px-4 py-1.5 bg-ocean-100 text-ocean-600 rounded-full text-sm font-bold mb-4">
               ✨ Notre monde
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-baloo font-bold text-sky-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-baloo font-bold text-ocean-800 mb-6">
               Un univers pensé pour{" "}
-              <span className="text-gradient-warm">s&apos;éveiller</span>
+              <span className="text-gradient-brand">s&apos;éveiller</span>
             </h2>
             <p className="text-lg text-gray-500 max-w-xl mx-auto">
               9 piliers pédagogiques pour accompagner chaque enfant dans son développement.
