@@ -5,13 +5,6 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Image from "next/image";
 
 export default function Footer() {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const id = href.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <footer className="bg-ocean-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
@@ -45,11 +38,11 @@ export default function Footer() {
                 <Phone size={13} aria-hidden="true" /><span>{CRECHE_INFO.phone}</span>
               </a>
               <a
-                href={`mailto:${CRECHE_INFO.email}`}
+                href="mailto:microcreche.dbebe@gmail.com"
                 aria-label="Envoyer un email"
                 className="flex items-center gap-2 text-ocean-300 hover:text-white transition-colors text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white rounded"
               >
-                <Mail size={13} aria-hidden="true" /><span>{CRECHE_INFO.email}</span>
+                <Mail size={13} aria-hidden="true" /><span>microcreche.dbebe@gmail.com</span>
               </a>
               <a
                 href={CRECHE_INFO.mapsUrl}
@@ -83,7 +76,6 @@ export default function Footer() {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => handleClick(e, link.href)}
                   className="block text-ocean-300 hover:text-white transition-colors text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white rounded"
                 >
                   {link.label}
