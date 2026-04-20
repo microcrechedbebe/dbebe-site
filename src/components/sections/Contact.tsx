@@ -73,7 +73,7 @@ export default function Contact() {
             </div>
           </a>
 
-          <a href={`mailto:${CRECHE_INFO.email}`} aria-label="Envoyer un email" className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400">
+          <a href="mailto:microcreche.dbebe@gmail.com" aria-label="Envoyer un email" className="flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400">
             <div className="w-9 h-9 rounded-lg bg-gold-100 flex items-center justify-center"><Mail size={16} className="text-ocean-500" aria-hidden="true" /></div>
             <div>
               <p className="text-gray-400 text-[10px] uppercase tracking-wider font-semibold">Email</p>
