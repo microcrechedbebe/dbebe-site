@@ -1,131 +1,116 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      // Detect active section
+      const sections = ["about", "team", "day", "contact"];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120 && rect.bottom > 120) {
+            setActiveSection(id);
+            break;
+          }
+        }
+      }
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on link click
-  const handleLinkClick = () => setMobileOpen(false);
-
-  const navLinks = [
-    { href: "#about", label: "Notre monde" },
-    { href: "#team", label: "L'équipe" },
-    { href: "#day", label: "Une journée" },
-    { href: "#contact", label: "Contact" },
+  const tabs = [
+    { href: "#about", label: "Notre monde", id: "about" },
+    { href: "#team", label: "L'équipe", id: "team" },
+    { href: "#day", label: "Une journée", id: "day" },
+    { href: "#contact", label: "Contact", id: "contact" },
   ];
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const id = href.replace("#", "");
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-lg shadow-lg shadow-ocean-400/10"
-          : "bg-transparent"
+          ? "bg-white/95 backdrop-blur-lg shadow-md shadow-ocean-400/5"
+          : "bg-white/90 backdrop-blur-md"
       }`}
     >
+      {/* Top bar: logo + CTA */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 sm:w-12 sm:h-12">
+        <div className="flex items-center justify-between h-14 sm:h-16">
+          <a href="#" className="flex items-center gap-2.5 group">
+            <div className="relative w-9 h-9 sm:w-11 sm:h-11 bg-white rounded-xl shadow-sm flex items-center justify-center">
               <Image
                 src="/logo.png"
                 alt="D'BEBE"
                 fill
-                className="object-contain"
+                className="object-contain p-0.5"
                 priority
               />
             </div>
             <div>
-              <span className={`font-baloo font-bold text-lg sm:text-xl transition-colors ${
-                scrolled ? "text-ocean-700" : "text-white"
-              }`}>
+              <span className="font-baloo font-bold text-base sm:text-lg text-ocean-700">
                 D&apos;BEBE
               </span>
-              <span className={`block text-[10px] sm:text-xs tracking-widest uppercase transition-colors ${
-                scrolled ? "text-ocean-500" : "text-white/80"
-              }`}>
+              <span className="hidden sm:block text-[9px] text-ocean-400 tracking-widest uppercase leading-none">
                 Micro-crèche
               </span>
             </div>
           </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
-                  scrolled
-                    ? "text-ocean-600 hover:bg-ocean-50 hover:text-ocean-800"
-                    : "text-white/90 hover:bg-white/20 hover:text-white"
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              className="ml-3 px-5 py-2.5 bg-gold-400 text-white rounded-full text-sm font-bold hover:bg-gold-500 transition-all duration-300 shadow-lg shadow-gold-400/30 hover:shadow-xl hover:-translate-y-0.5"
-            >
-              Inscription ✨
-            </a>
-          </nav>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className={`md:hidden p-2 rounded-xl transition-colors ${
-              scrolled ? "text-ocean-700" : "text-white"
-            }`}
-            aria-label="Menu"
+          <a
+            href="#contact"
+            onClick={(e) => handleClick(e, "#contact")}
+            className="px-4 py-2 bg-gold-400 text-white rounded-full text-sm font-bold hover:bg-gold-500 transition-all duration-300 shadow-md shadow-gold-400/20 hover:shadow-lg hover:-translate-y-0.5"
           >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            Inscription ✨
+          </a>
         </div>
       </div>
 
-      {/* Mobile Nav */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 backdrop-blur-lg border-t border-ocean-100"
-          >
-            <nav className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={handleLinkClick}
-                  className="px-4 py-3 rounded-xl text-ocean-700 hover:bg-ocean-50 font-semibold transition-all"
-                >
-                  {link.label}
-                </a>
-              ))}
+      {/* Tab navigation - always visible */}
+      <div className="border-t border-ocean-100/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex items-center gap-1 overflow-x-auto scrollbar-hide py-1.5">
+            {tabs.map((tab) => (
               <a
-                href="#contact"
-                onClick={handleLinkClick}
-                className="mt-2 px-4 py-3 bg-gold-400 text-white rounded-xl text-center font-bold hover:bg-gold-500 transition-all"
+                key={tab.id}
+                href={tab.href}
+                onClick={(e) => handleClick(e, tab.href)}
+                className={`flex-shrink-0 px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                  activeSection === tab.id
+                    ? "bg-ocean-400 text-white shadow-sm"
+                    : "text-ocean-600 hover:bg-ocean-50 hover:text-ocean-800"
+                }`}
               >
-                Inscription ✨
+                {tab.label}
               </a>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </header>
   );
 }

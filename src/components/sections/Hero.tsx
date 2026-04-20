@@ -9,17 +9,12 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-ocean-400 via-ocean-500 to-ocean-600">
       {/* Decorative shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Clouds */}
         <div className="absolute top-16 left-[10%] w-40 h-16 bg-white/20 rounded-full animate-float" />
         <div className="absolute top-32 right-[15%] w-56 h-20 bg-white/15 rounded-full animate-float-reverse" />
         <div className="absolute bottom-32 left-[5%] w-32 h-12 bg-white/10 rounded-full animate-float" style={{ animationDelay: "2s" }} />
-        
-        {/* Floating circles */}
         <div className="absolute top-1/4 right-[10%] w-20 h-20 bg-gold-300/30 rounded-full animate-bounce-gentle" />
         <div className="absolute bottom-1/3 left-[20%] w-16 h-16 bg-peach-200/30 rounded-full animate-bounce-gentle" style={{ animationDelay: "1s" }} />
         <div className="absolute top-1/2 right-[30%] w-12 h-12 bg-white/20 rounded-full animate-bounce-gentle" style={{ animationDelay: "2s" }} />
-        
-        {/* Stars */}
         {[...Array(5)].map((_, i) => (
           <div
             key={i}
@@ -44,8 +39,8 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        {/* Logo */}
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+        {/* Logo with white background */}
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -53,14 +48,15 @@ export default function Hero() {
           className="mb-8"
         >
           <div className="relative w-28 h-28 sm:w-36 sm:h-36 mx-auto">
-            <div className="absolute inset-0 bg-white/30 rounded-full blur-xl animate-pulse-soft" />
-            <Image
-              src="/logo.png"
-              alt="D'BEBE"
-              fill
-              className="object-contain relative z-10 drop-shadow-lg"
-              priority
-            />
+            <div className="absolute inset-0 bg-white rounded-full shadow-lg p-2">
+              <Image
+                src="/logo.png"
+                alt="D'BEBE"
+                fill
+                className="object-contain relative z-10"
+                priority
+              />
+            </div>
           </div>
         </motion.div>
 
@@ -69,7 +65,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-baloo font-bold text-white mb-6 leading-tight"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-baloo font-bold text-white mb-4 sm:mb-6 leading-tight"
         >
           Là où les petits{" "}
           <span className="text-gold-300">grandissent</span>
@@ -81,10 +77,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="text-lg sm:text-xl text-white/85 mb-10 max-w-2xl mx-auto font-medium"
+          className="text-base sm:text-lg md:text-xl text-white/85 mb-8 sm:mb-10 max-w-2xl mx-auto font-medium"
         >
-          Micro-crèche D&apos;BEBE à Besançon — Un cocon d&apos;éveil chaleureux
-          pour révéler le potentiel de votre enfant.
+          Micro-crèche D&apos;BEBE à Besançon — Un cocon d&apos;éveil chaleureux pour révéler le potentiel de votre enfant.
         </motion.p>
 
         {/* CTA */}
@@ -92,17 +87,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-14"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-10 sm:mb-14"
         >
           <a
             href="#contact"
-            className="px-8 py-4 bg-gold-400 text-white rounded-2xl font-bold text-lg hover:bg-gold-500 transition-all duration-300 shadow-xl shadow-gold-400/30 hover:shadow-2xl hover:-translate-y-1"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-gold-400 text-white rounded-2xl font-bold text-base sm:text-lg hover:bg-gold-500 transition-all duration-300 shadow-xl shadow-gold-400/30 hover:shadow-2xl hover:-translate-y-1"
           >
             Demander une place 🌟
           </a>
           <a
             href="#about"
-            className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white border-2 border-white/40 rounded-2xl font-bold text-lg hover:bg-white/30 transition-all duration-300"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-white/20 backdrop-blur-sm text-white border-2 border-white/40 rounded-2xl font-bold text-base sm:text-lg hover:bg-white/30 transition-all duration-300"
           >
             Découvrir
           </a>
@@ -113,18 +108,18 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 1 }}
-          className="flex flex-wrap justify-center gap-6 sm:gap-10"
+          className="flex flex-wrap justify-center gap-4 sm:gap-8"
         >
           {[
             { icon: Sparkles, value: "Dès 10 sem", label: "Accueil" },
             { icon: Clock, value: "6h–19h", label: "Horaires" },
             { icon: Heart, value: "12 places", label: "Capacité" },
           ].map((stat, i) => (
-            <div key={i} className="flex items-center gap-3 bg-white/15 px-4 py-2 rounded-full">
-              <stat.icon size={18} className="text-gold-300" />
+            <div key={i} className="flex items-center gap-2 sm:gap-3 bg-white/15 px-3 sm:px-4 py-2 rounded-full">
+              <stat.icon size={16} className="text-gold-300" />
               <div className="text-left">
-                <div className="text-white font-bold text-sm">{stat.value}</div>
-                <div className="text-white/70 text-xs">{stat.label}</div>
+                <div className="text-white font-bold text-xs sm:text-sm">{stat.value}</div>
+                <div className="text-white/70 text-[10px] sm:text-xs">{stat.label}</div>
               </div>
             </div>
           ))}
@@ -136,15 +131,15 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-28 left-1/2 -translate-x-1/2"
+        className="absolute bottom-20 sm:bottom-24 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="w-8 h-12 rounded-full border-2 border-white/30 flex items-start justify-center pt-2"
+          className="w-7 h-10 rounded-full border-2 border-white/30 flex items-start justify-center pt-2"
         >
           <motion.div
-            animate={{ opacity: [1, 0], y: [0, 10] }}
+            animate={{ opacity: [1, 0], y: [0, 8] }}
             transition={{ duration: 2, repeat: Infinity }}
             className="w-1.5 h-1.5 rounded-full bg-white/60"
           />
