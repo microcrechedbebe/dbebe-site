@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { CRECHE_INFO } from "@/app/lib/constants";
 import { MapPin, Phone, Mail, Clock, Navigation } from "lucide-react";
 
@@ -22,6 +22,29 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 }
 
 export default function Contact() {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [iframeHeight, setIframeHeight] = useState(800);
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      // Meeko envoie la hauteur via postMessage
+      if (event.origin.includes("meeko.site")) {
+        const data = event.data;
+        if (typeof data === "number" && data > 100) {
+          setIframeHeight(data + 40); // petit padding de sécurité
+        } else if (data && typeof data === "object") {
+          const h = data.height || data.frameHeight || data.size;
+          if (h && typeof h === "number" && h > 100) {
+            setIframeHeight(h + 40);
+          }
+        }
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
+
   return (
     <section id="contact" className="py-16 sm:py-24 px-4 relative overflow-hidden bg-gradient-to-b from-white to-cream">
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-ocean-200/15 rounded-full blur-3xl pointer-events-none" />
@@ -38,7 +61,7 @@ export default function Contact() {
               <span className="text-gradient-brand">pré-inscription</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto">
-              Remplissez le formulaire ci-dessous. Nous vous recontactons sous 48 h pour organiser une visite.
+              Remplissez le formulaire ci-dessous. Nous vous recontactons sous 48 h pour organiser une visite.
             </p>
           </div>
         </AnimatedSection>
@@ -100,11 +123,11 @@ export default function Contact() {
           </div>
         </AnimatedSection>
 
-        {/* Meeko iframe */}
+        {/* Meeko iframe — hauteur auto */}
         <AnimatedSection>
           <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-            <div className="p-4 sm:p-6 border-b border-gray-100 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-ocean-100 flex items-center justify-center">
+            <div className="p-4 sm:p-5 border-b border-gray-100 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-ocean-100 flex items-center justify-center flex-shrink-0">
                 <span className="text-ocean-600 text-sm" aria-hidden="true">📝</span>
               </div>
               <div>
@@ -113,14 +136,16 @@ export default function Contact() {
               </div>
             </div>
             <iframe
+              ref={iframeRef}
               src="https://dbebe.meeko.site/iframe/registration/one"
-              style={{ margin: "0 auto", width: "100%" }}
-              height="2500"
+              width="100%"
+              height={iframeHeight}
               frameBorder={0}
               marginHeight={0}
               marginWidth={0}
               title="Formulaire de pré-inscription D'BEBE"
               loading="lazy"
+              style={{ display: "block", transition: "height 0.3s ease" }}
             />
           </div>
         </AnimatedSection>
