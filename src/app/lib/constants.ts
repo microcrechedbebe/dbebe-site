@@ -9,7 +9,7 @@ export const CRECHE_INFO = {
   email: "microcreche.dbebe@gmail.com",
   hours: "6 h – 19 h",
   days: "Lundi – Vendredi",
-  mapsUrl: "https://maps.google.com/?q=D%27BEBE+1+avenue+de+l%27ile+de+france+Besan%C3%A7on",
+  mapsUrl: "https://www.google.com/maps/place/Micro-cr%C3%A8che+D'BEBE/@47.2222843,5.9700757,738m/data=!3m2!1e3!4b1!4m6!3m5!1s0x478d637dacc5f86f:0x54982481e8e359e9!8m2!3d47.2222807!4d5.9726506!16s%2Fg%2F11j6z2r0m5",
   capacity: 12,
   capacitySurcharge: 14,
   ageRange: "10 semaines – 4 ans révolus",
