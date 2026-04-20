@@ -1,9 +1,9 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { CRECHE_INFO } from "@/app/lib/constants";
-import { MapPin, Phone, Mail, Clock, Send, Sparkles } from "lucide-react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef(null);
@@ -22,14 +22,6 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 }
 
 export default function Contact() {
-  const [step, setStep] = useState(1);
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
   return (
     <section id="contact" className="py-16 sm:py-24 px-4 relative overflow-hidden bg-gradient-to-b from-white to-cream">
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-ocean-200/15 rounded-full blur-3xl" />
@@ -39,162 +31,82 @@ export default function Contact() {
         <AnimatedSection>
           <div className="text-center mb-12 sm:mb-16">
             <span className="inline-block px-4 py-1.5 bg-gold-100 text-gold-600 rounded-full text-xs sm:text-sm font-bold mb-3 sm:mb-4">
-              💌 Contact
+              💌 Inscription
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-baloo font-bold text-ocean-800 mb-4 sm:mb-6">
-              Rejoignez{" "}
-              <span className="text-gradient-brand">l&apos;aventure</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-baloo font-bold text-ocean-800 mb-4">
+              Demandez une{" "}
+              <span className="text-gradient-brand">pré-inscription</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto">
-              Une place pour votre enfant ? Parlons-en ✨
+              Remplissez le formulaire ci-dessous. Nous vous recontactons sous 48 h pour organiser une visite.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8">
-          {/* Info cards */}
-          <AnimatedSection className="lg:col-span-2 space-y-3 sm:space-y-4">
-            {[
-              { icon: MapPin, label: "Adresse", value: `${CRECHE_INFO.address}, ${CRECHE_INFO.city}`, color: "bg-ocean-100" },
-              { icon: Phone, label: "Téléphone", value: CRECHE_INFO.phone, color: "bg-gold-100" },
-              { icon: Mail, label: "Email", value: CRECHE_INFO.email, color: "bg-peach-50" },
-              { icon: Clock, label: "Horaires", value: `${CRECHE_INFO.hours} — ${CRECHE_INFO.days}`, color: "bg-ocean-50" },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ x: 4 }}
-                className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100"
-              >
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg ${item.color} flex items-center justify-center flex-shrink-0`}>
-                  <item.icon size={16} className="text-ocean-500" />
-                </div>
-                <div>
-                  <p className="text-gray-400 text-[10px] sm:text-xs uppercase tracking-wider font-semibold">{item.label}</p>
-                  <p className="text-ocean-800 font-semibold text-xs sm:text-sm">{item.value}</p>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatedSection>
-
-          {/* Form */}
-          <AnimatedSection className="lg:col-span-3">
-            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 p-5 sm:p-8">
-              {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-8 sm:py-12"
+        {/* Contact info cards */}
+        <AnimatedSection className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
+          {[
+            { icon: Phone, label: "Téléphone", value: CRECHE_INFO.phone, href: `tel:${CRECHE_INFO.phone.replace(/\s/g, "")}`, color: "bg-ocean-100" },
+            { icon: Mail, label: "Email", value: "Nous écrire", href: `mailto:${CRECHE_INFO.email}`, color: "bg-gold-100" },
+            { icon: MapPin, label: "Adresse", value: CRECHE_INFO.city, href: CRECHE_INFO.mapsUrl, color: "bg-peach-50" },
+            { icon: Clock, label: "Horaires", value: CRECHE_INFO.hours, href: null, color: "bg-ocean-50" },
+          ].map((item, i) => (
+            <motion.div key={i} whileHover={{ y: -3 }}>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  aria-label={item.label}
+                  className={`flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow text-center w-full`}
                 >
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-ocean-300 to-gold-400 flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                    <Sparkles size={28} className="text-white" />
+                  <div className={`w-9 h-9 rounded-lg ${item.color} flex items-center justify-center`}>
+                    <item.icon size={16} className="text-ocean-500" />
                   </div>
-                  <h4 className="text-xl sm:text-2xl font-baloo font-bold text-ocean-800 mb-2">
-                    Merci ! 🎉
-                  </h4>
-                  <p className="text-gray-500 text-sm sm:text-base">
-                    Nous vous recontacterons très vite !
-                  </p>
-                </motion.div>
+                  <div>
+                    <p className="text-gray-400 text-[10px] uppercase tracking-wider font-semibold">{item.label}</p>
+                    <p className="text-ocean-800 font-bold text-xs sm:text-sm">{item.value}</p>
+                  </div>
+                </a>
               ) : (
-                <form onSubmit={handleSubmit}>
-                  {/* Progress */}
-                  <div className="flex items-center gap-2 mb-6 sm:mb-8">
-                    {[1, 2, 3].map((s) => (
-                      <div key={s} className="flex-1 h-1.5 sm:h-2 rounded-full bg-gray-100 overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: step >= s ? "100%" : "0%" }}
-                          transition={{ duration: 0.3 }}
-                          className="h-full bg-gradient-to-r from-ocean-400 to-gold-400 rounded-full"
-                        />
-                      </div>
-                    ))}
+                <div className={`flex flex-col items-center gap-2 p-3 sm:p-4 bg-white rounded-xl shadow-sm border border-gray-100 text-center`}>
+                  <div className={`w-9 h-9 rounded-lg ${item.color} flex items-center justify-center`}>
+                    <item.icon size={16} className="text-ocean-500" />
                   </div>
-
-                  {step === 1 && (
-                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-3 sm:space-y-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                        <div>
-                          <label className="block text-[10px] sm:text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold">Nom</label>
-                          <input type="text" required className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-cream border border-gray-200 text-ocean-900 text-sm placeholder-gray-300 focus:border-ocean-400 focus:ring-2 focus:ring-ocean-200 outline-none transition" placeholder="Votre nom" />
-                        </div>
-                        <div>
-                          <label className="block text-[10px] sm:text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold">Prénom</label>
-                          <input type="text" required className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-cream border border-gray-200 text-ocean-900 text-sm placeholder-gray-300 focus:border-ocean-400 focus:ring-2 focus:ring-ocean-200 outline-none transition" placeholder="Votre prénom" />
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-[10px] sm:text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold">Email</label>
-                        <input type="email" required className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-cream border border-gray-200 text-ocean-900 text-sm placeholder-gray-300 focus:border-ocean-400 focus:ring-2 focus:ring-ocean-200 outline-none transition" placeholder="votre@email.com" />
-                      </div>
-                      <div>
-                        <label className="block text-[10px] sm:text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold">Téléphone</label>
-                        <input type="tel" required className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-cream border border-gray-200 text-ocean-900 text-sm placeholder-gray-300 focus:border-ocean-400 focus:ring-2 focus:ring-ocean-200 outline-none transition" placeholder="06 XX XX XX XX" />
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {step === 2 && (
-                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-3 sm:space-y-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                        <div>
-                          <label className="block text-[10px] sm:text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold">Prénom de l&apos;enfant</label>
-                          <input type="text" required className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-cream border border-gray-200 text-ocean-900 text-sm placeholder-gray-300 focus:border-ocean-400 focus:ring-2 focus:ring-ocean-200 outline-none transition" placeholder="Prénom" />
-                        </div>
-                        <div>
-                          <label className="block text-[10px] sm:text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold">Date de naissance</label>
-                          <input type="date" required className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-cream border border-gray-200 text-ocean-900 text-sm focus:border-ocean-400 focus:ring-2 focus:ring-ocean-200 outline-none transition" />
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-[10px] sm:text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold">Formule</label>
-                        <select required className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-cream border border-gray-200 text-ocean-900 text-sm focus:border-ocean-400 focus:ring-2 focus:ring-ocean-200 outline-none transition">
-                          <option value="">Choisir</option>
-                          <option value="regulier">Régulier (5j/semaine)</option>
-                          <option value="partiel">Partiel (2-3j/semaine)</option>
-                          <option value="occasionnel">Occasionnel</option>
-                        </select>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {step === 3 && (
-                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-3 sm:space-y-4">
-                      <div>
-                        <label className="block text-[10px] sm:text-xs text-gray-400 mb-1 uppercase tracking-wider font-semibold">Message (optionnel)</label>
-                        <textarea rows={3} className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-cream border border-gray-200 text-ocean-900 text-sm placeholder-gray-300 focus:border-ocean-400 focus:ring-2 focus:ring-ocean-200 outline-none transition resize-none" placeholder="Vos questions..." />
-                      </div>
-                      <div className="p-3 sm:p-4 bg-ocean-50 rounded-lg sm:rounded-xl">
-                        <p className="text-xs sm:text-sm text-ocean-700">
-                          📋 Certificat médical, vaccins à jour, pièce d&apos;identité et assurance responsabilité civile nécessaires à l&apos;inscription.
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  <div className="flex justify-between mt-6 sm:mt-8">
-                    {step > 1 && (
-                      <button type="button" onClick={() => setStep(step - 1)} className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 text-gray-500 font-semibold text-sm hover:bg-gray-50 transition-all">
-                        Retour
-                      </button>
-                    )}
-                    <div className="flex-1" />
-                    {step < 3 ? (
-                      <button type="button" onClick={() => setStep(step + 1)} className="px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-ocean-400 to-ocean-500 text-white rounded-lg sm:rounded-xl font-bold text-sm hover:shadow-lg hover:shadow-ocean-400/25 transition-all">
-                        Suivant
-                      </button>
-                    ) : (
-                      <button type="submit" className="px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-gold-400 to-gold-500 text-white rounded-lg sm:rounded-xl font-bold text-sm hover:shadow-lg hover:shadow-gold-400/25 transition-all flex items-center gap-2">
-                        <Send size={14} />
-                        Envoyer
-                      </button>
-                    )}
+                  <div>
+                    <p className="text-gray-400 text-[10px] uppercase tracking-wider font-semibold">{item.label}</p>
+                    <p className="text-ocean-800 font-bold text-xs sm:text-sm">{item.value}</p>
                   </div>
-                </form>
+                </div>
               )}
+            </motion.div>
+          ))}
+        </AnimatedSection>
+
+        {/* Meeko iframe */}
+        <AnimatedSection>
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+            <div className="p-4 sm:p-6 border-b border-gray-100 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-ocean-100 flex items-center justify-center">
+                <span className="text-ocean-600 text-sm">📝</span>
+              </div>
+              <div>
+                <p className="font-baloo font-bold text-ocean-800 text-sm sm:text-base">Formulaire de pré-inscription</p>
+                <p className="text-gray-400 text-xs">Via notre partenaire Meeko — sécurisé et confidentiel</p>
+              </div>
             </div>
-          </AnimatedSection>
-        </div>
+            <iframe
+              src="https://dbebe.meeko.site/iframe/registration/one"
+              style={{ margin: "0 auto", width: "100%" }}
+              height="2500"
+              frameBorder={0}
+              marginHeight={0}
+              marginWidth={0}
+              title="Formulaire de pré-inscription D'BEBE"
+              loading="lazy"
+            />
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
