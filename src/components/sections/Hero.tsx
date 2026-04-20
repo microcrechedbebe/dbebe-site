@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-sky-400 via-sky-500 to-sky-600">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-ocean-400 via-ocean-500 to-ocean-600">
       {/* Decorative shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Clouds */}
@@ -15,16 +15,15 @@ export default function Hero() {
         <div className="absolute bottom-32 left-[5%] w-32 h-12 bg-white/10 rounded-full animate-float" style={{ animationDelay: "2s" }} />
         
         {/* Floating circles */}
-        <div className="absolute top-1/4 right-[10%] w-20 h-20 bg-sun-300/30 rounded-full animate-bounce-gentle" />
-        <div className="absolute bottom-1/3 left-[20%] w-16 h-16 bg-coral-300/25 rounded-full animate-bounce-gentle" style={{ animationDelay: "1s" }} />
-        <div className="absolute top-1/2 right-[30%] w-12 h-12 bg-lilac-300/25 rounded-full animate-bounce-gentle" style={{ animationDelay: "2s" }} />
-        <div className="absolute bottom-1/4 right-[8%] w-24 h-24 bg-mint-300/20 rounded-full animate-float-reverse" style={{ animationDelay: "3s" }} />
+        <div className="absolute top-1/4 right-[10%] w-20 h-20 bg-gold-300/30 rounded-full animate-bounce-gentle" />
+        <div className="absolute bottom-1/3 left-[20%] w-16 h-16 bg-peach-200/30 rounded-full animate-bounce-gentle" style={{ animationDelay: "1s" }} />
+        <div className="absolute top-1/2 right-[30%] w-12 h-12 bg-white/20 rounded-full animate-bounce-gentle" style={{ animationDelay: "2s" }} />
         
         {/* Stars */}
         {[...Array(5)].map((_, i) => (
           <div
             key={i}
-            className="absolute text-sun-300/40 animate-pulse-soft"
+            className="absolute text-gold-300/50 animate-pulse-soft"
             style={{
               left: `${15 + i * 18}%`,
               top: `${10 + (i % 3) * 25}%`,
@@ -73,7 +72,7 @@ export default function Hero() {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-baloo font-bold text-white mb-6 leading-tight"
         >
           Là où les petits{" "}
-          <span className="text-sun-300">grandissent</span>
+          <span className="text-gold-300">grandissent</span>
           <br />
           en confiance 💛
         </motion.h1>
@@ -97,7 +96,7 @@ export default function Hero() {
         >
           <a
             href="#contact"
-            className="px-8 py-4 bg-coral-400 text-white rounded-2xl font-bold text-lg hover:bg-coral-500 transition-all duration-300 shadow-xl shadow-coral-400/30 hover:shadow-2xl hover:shadow-coral-400/40 hover:-translate-y-1"
+            className="px-8 py-4 bg-gold-400 text-white rounded-2xl font-bold text-lg hover:bg-gold-500 transition-all duration-300 shadow-xl shadow-gold-400/30 hover:shadow-2xl hover:-translate-y-1"
           >
             Demander une place 🌟
           </a>
@@ -117,12 +116,12 @@ export default function Hero() {
           className="flex flex-wrap justify-center gap-6 sm:gap-10"
         >
           {[
-            { icon: Sparkles, value: "Dès 10 sem", label: "Accueil", color: "bg-sun-300/20" },
-            { icon: Clock, value: "6h–19h", label: "Horaires", color: "bg-mint-300/20" },
-            { icon: Heart, value: "12 places", label: "Capacité", color: "bg-coral-300/20" },
+            { icon: Sparkles, value: "Dès 10 sem", label: "Accueil" },
+            { icon: Clock, value: "6h–19h", label: "Horaires" },
+            { icon: Heart, value: "12 places", label: "Capacité" },
           ].map((stat, i) => (
-            <div key={i} className={`flex items-center gap-3 ${stat.color} px-4 py-2 rounded-full`}>
-              <stat.icon size={18} className="text-white" />
+            <div key={i} className="flex items-center gap-3 bg-white/15 px-4 py-2 rounded-full">
+              <stat.icon size={18} className="text-gold-300" />
               <div className="text-left">
                 <div className="text-white font-bold text-sm">{stat.value}</div>
                 <div className="text-white/70 text-xs">{stat.label}</div>
