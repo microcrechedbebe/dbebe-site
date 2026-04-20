@@ -23,7 +23,7 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export default function Contact() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [iframeHeight, setIframeHeight] = useState(1200);
+  const [iframeHeight, setIframeHeight] = useState(800);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
